@@ -8,16 +8,34 @@ public class PlayerMovement : MonoBehaviour
 	private Rigidbody _body;
 	private Rigidbody Body => _body == null ? _body = GetComponentInParent<Rigidbody>() : _body;
 
-	[Header("Walking")]
+	[Header("References")]
+	public PlayerGravity Gravity;
+	public CapsuleCollider Collider;
+
+	[Header("Config")]
 	public float WalkSpeed;
 	public float AirborneForce;
-
-	[Header("Jumping")]
-	public LayerMask GroundMask;
 	public float JumpStrength;
+	public LayerMask GroundMask;
+	[Range(0,1)]
+	public float GroundDetectionRange;
 
 	private int _groundContactCount;
-	private bool Grounded => _groundContactCount > 0;
+
+	private bool Grounded
+	{
+		get
+		{
+			if (_groundContactCount <= 0) return false;
+			Transform t = transform;
+			return Physics.CheckCapsule(
+				t.TransformPoint(Collider.center + Vector3.up * (Collider.height / 2 - GroundDetectionRange)),
+				t.TransformPoint(Collider.center + Vector3.down * (Collider.height / 2 + GroundDetectionRange)),
+				Collider.radius,
+				GroundMask.value
+			);
+		}
+	}
 
 	private void Update()
 	{

@@ -142,6 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec3211acfc5706b4eb1c434ae9b12662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Gravity: {fileID: 2997386851078735336}
+  Collider: {fileID: 8190977108810092170}
   WalkSpeed: 2
   AirborneForce: 1
   GroundMask:

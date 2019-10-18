@@ -30,6 +30,10 @@ public class GravityControl : MonoBehaviour
 				);
 				newDown = -hit.normal;
 			}
+			else
+			{
+				return;
+			}
 		}
 		else
 		{
