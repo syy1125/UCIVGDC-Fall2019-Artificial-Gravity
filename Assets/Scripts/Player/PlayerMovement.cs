@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
 	[Header("Walking")]
 	public float WalkSpeed;
+	public float AirborneForce;
 
 	[Header("Jumping")]
 	public LayerMask GroundMask;
@@ -20,20 +21,29 @@ public class PlayerMovement : MonoBehaviour
 
 	private void Update()
 	{
-		var input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+		var input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 		if (input.magnitude > 1)
 		{
 			input.Normalize();
 		}
 
-		input *= WalkSpeed;
-
-		Body.velocity = Parent.TransformDirection(input.x, Parent.InverseTransformDirection(Body.velocity).y, input.y);
+		if (Grounded)
+		{
+			input *= WalkSpeed;
+			Body.velocity = Parent.TransformDirection(
+				input.x, Parent.InverseTransformDirection(Body.velocity).y, input.z
+			);
+		}
+		else
+		{
+			input *= AirborneForce;
+			Body.AddForce(Parent.TransformDirection(input), ForceMode.Acceleration);
+		}
 	}
 
 	private void FixedUpdate()
 	{
-		if (Input.GetAxisRaw("Jump") > 0 && Grounded)
+		if (Grounded && Input.GetAxisRaw("Jump") > 0)
 		{
 			Body.AddForce(transform.up * JumpStrength, ForceMode.VelocityChange);
 		}
