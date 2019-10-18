@@ -788,6 +788,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3341128929781735273, guid: c878de159930a084980211ce22d00942,
+        type: 3}
+      propertyPath: SurfaceSnapArrow
+      value: 
+      objectReference: {fileID: 629798198}
     - target: {fileID: 1618270098096371965, guid: c878de159930a084980211ce22d00942,
         type: 3}
       propertyPath: m_Name
@@ -847,15 +852,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 963194229, guid: c878de159930a084980211ce22d00942, type: 3}
-      propertyPath: SurfaceSnapArrow
-      value: 
-      objectReference: {fileID: 629798198}
-    - target: {fileID: 5722386452147157212, guid: c878de159930a084980211ce22d00942,
-        type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 311
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c878de159930a084980211ce22d00942, type: 3}

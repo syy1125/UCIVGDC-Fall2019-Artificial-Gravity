@@ -12,9 +12,11 @@
           <e p="AirResistance.cs" t="Include" />
           <e p="NavballControl.cs" t="Include" />
           <e p="Player" t="Include">
+            <e p="GravityControl.cs" t="Include" />
             <e p="PlayerGravity.cs" t="Include" />
+            <e p="PlayerLook.cs" t="Include" />
             <e p="PlayerMovement.cs" t="Include" />
-            <e p="PlayerRotation.cs" t="Include" />
+            <e p="PlayerOrientation.cs" t="Include" />
           </e>
         </e>
       </e>
