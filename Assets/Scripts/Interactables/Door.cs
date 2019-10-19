@@ -14,9 +14,9 @@ public class Door : PuzzleElement
     void Awake(){
         animator = gameObject.GetComponent<Animator>();
         if(state==1){
-            animTime = 0;
-        } else {
             animTime = 1;
+        } else {
+            animTime = 0;
         }
         triggeredBy.activateEvent += new PuzzleElementEventHandler(onActivate);
         triggeredBy.deactivateEvent += new PuzzleElementEventHandler(onDeactivate);
