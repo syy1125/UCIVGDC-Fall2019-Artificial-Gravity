@@ -45,14 +45,11 @@ public class Door : PuzzleElement
     public void OnActivate(){
         if(Activation != ActivationType.OnlyDeactivate){
             State = 1;
-            //animator.SetFloat("DoorSpeed",1f);
-
         }
     }
     public void OnDeactivate(){
         if(Activation != ActivationType.OnlyActivate){
             State = 0;
-            //animator.SetFloat("DoorSpeed",-1f);
         }
     }
     public void OnToggle(){

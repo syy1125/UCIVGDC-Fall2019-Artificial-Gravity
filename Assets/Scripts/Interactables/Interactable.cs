@@ -23,18 +23,6 @@ public class Interactable : PuzzleElement
     public string Tooltip="";
     private bool FirstUsage = true;
 
-
-    void Awake()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OnInteract(){
         if(Disabled)
             return;
@@ -50,13 +38,7 @@ public class Interactable : PuzzleElement
                 }
                 break;
             case InteractType.Toggle:
-                if(State==0){
-                    State = 1;
-                    ActivateOthers();
-                } else {
-                    State = 0;
-                    DeactivateOthers();
-                }
+                ToggleOthers();
                 FirstUsage = false;
                 break;
         }
