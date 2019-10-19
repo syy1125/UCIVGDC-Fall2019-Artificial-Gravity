@@ -5,22 +5,22 @@ using UnityEngine;
 public class Door : PuzzleElement
 {
     // Start is called before the first frame update
-    private Animator animator;
-    public ActivationType activationType = ActivationType.STANDARD;
-    public PuzzleElement triggeredBy;
-    public float doorSpeed = 1;
-    private float animTime = 0;
+    private Animator DoorAnimator;
+    public ActivationType Activation = ActivationType.Standard;
+    public PuzzleElement TriggeredBy;
+    public float DoorSpeed = 1;
+    private float AnimTime = 0;
     
     void Awake(){
-        animator = gameObject.GetComponent<Animator>();
-        if(state==1){
-            animTime = 1;
+        DoorAnimator = gameObject.GetComponent<Animator>();
+        if(State==1){
+            AnimTime = 1;
         } else {
-            animTime = 0;
+            AnimTime = 0;
         }
-        triggeredBy.activateEvent += new PuzzleElementEventHandler(onActivate);
-        triggeredBy.deactivateEvent += new PuzzleElementEventHandler(onDeactivate);
-        triggeredBy.toggleEvent += new PuzzleElementEventHandler(onToggle);
+        TriggeredBy.ActivateEvent += new PuzzleElementEventHandler(OnActivate);
+        TriggeredBy.DeactivateEvent += new PuzzleElementEventHandler(OnDeactivate);
+        TriggeredBy.ToggleEvent += new PuzzleElementEventHandler(OnToggle);
     }
     
     void Start()
@@ -31,37 +31,37 @@ public class Door : PuzzleElement
     // Update is called once per frame
     void Update()
     {
-        if(state == 0){
-            if(animTime > 0){
-                animTime -= Time.deltaTime*doorSpeed;
+        if(State == 0){
+            if(AnimTime > 0){
+                AnimTime -= Time.deltaTime*DoorSpeed;
             }
-        } else if(state == 1){
-            if(animTime < 1){
-                animTime += Time.deltaTime*doorSpeed;
+        } else if(State == 1){
+            if(AnimTime < 1){
+                AnimTime += Time.deltaTime*DoorSpeed;
             }
         }
-        animator.SetFloat("Time",animTime);
+        DoorAnimator.SetFloat("Time",AnimTime);
     }
-    public void onActivate(){
-        if(activationType != ActivationType.ONLYDEACTIVATE){
-            state = 1;
+    public void OnActivate(){
+        if(Activation != ActivationType.OnlyDeactivate){
+            State = 1;
             //animator.SetFloat("DoorSpeed",1f);
 
         }
     }
-    public void onDeactivate(){
-        if(activationType != ActivationType.ONLYACTIVATE){
-            state = 0;
+    public void OnDeactivate(){
+        if(Activation != ActivationType.OnlyActivate){
+            State = 0;
             //animator.SetFloat("DoorSpeed",-1f);
         }
     }
-    public void onToggle(){
-        if(state == 0){
-            state = 1;
-            onActivate();
-        } else if(state == 1){
-            state = 0;
-            onDeactivate();
+    public void OnToggle(){
+        if(State == 0){
+            State = 1;
+            OnActivate();
+        } else if(State == 1){
+            State = 0;
+            OnDeactivate();
         }
     }
 }

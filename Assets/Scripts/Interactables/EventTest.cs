@@ -14,7 +14,7 @@ public class EventTest : PuzzleElement
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.P)){
-            toggleOthers();
+            ToggleOthers();
         }
     }
 }

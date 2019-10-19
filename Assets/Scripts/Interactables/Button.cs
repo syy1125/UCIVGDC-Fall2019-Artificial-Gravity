@@ -6,36 +6,36 @@ public class Button : PuzzleElement
 {
     // Start is called before the first frame update
 
-    private Animator animator;
-    private GameObject trigger;
-    private float animTime = 0;
-    public float buttonSpeed = 1f;
+    private Animator ButtonAnimator;
+    private GameObject Trigger;
+    private float AnimTime = 0;
+    public float ButtonSpeed = 1f;
     void Awake()
     {
-        animator = gameObject.GetComponent<Animator>();
+        ButtonAnimator = gameObject.GetComponent<Animator>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(state == 0){
-            if(animTime > 0){
-                animTime -= Time.deltaTime*buttonSpeed;
+        if(State == 0){
+            if(AnimTime > 0){
+                AnimTime -= Time.deltaTime*ButtonSpeed;
             }
-        } else if(state == 1){
-            if(animTime < 1){
-                animTime += Time.deltaTime*buttonSpeed;
+        } else if(State == 1){
+            if(AnimTime < 1){
+                AnimTime += Time.deltaTime*ButtonSpeed;
             }
         }
-        animator.SetFloat("Time",animTime);
+        ButtonAnimator.SetFloat("Time",AnimTime);
     }
-    public void activateOthers(){
-        state = 1;
-        base.activateOthers();
+    public void ActivateOthers(){
+        State = 1;
+        base.ActivateOthers();
     }
-    public void deactivateOthers(){
-        state = 0;
-        base.deactivateOthers();
+    public void DeactivateOthers(){
+        State = 0;
+        base.DeactivateOthers();
     }
 }

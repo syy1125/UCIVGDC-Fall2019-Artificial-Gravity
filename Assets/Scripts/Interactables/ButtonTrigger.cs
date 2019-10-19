@@ -5,27 +5,27 @@ using UnityEngine;
 public class ButtonTrigger : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Button button;
-    public string[] activationTags = {"Player","PuzzleBox"}; //Button should detect objects with this tag
+    public Button ButtonObject;
+    public string[] ActivationTags = {"Player","PuzzleBox"}; //Button should detect objects with this tag
 
-    private int objectCount = 0;
+    private int ObjectCount = 0;
    
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("PuzzleBox") || other.CompareTag("Player")){
-            objectCount += 1;
-            if(objectCount > 0){
-                button.activateOthers();
+            ObjectCount += 1;
+            if(ObjectCount > 0){
+                ButtonObject.ActivateOthers();
             }
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if(other.CompareTag("PuzzleBox") || other.CompareTag("Player")){
-            objectCount -= 1;
-            if(objectCount <= 0){
-                button.deactivateOthers();
+            ObjectCount -= 1;
+            if(ObjectCount <= 0){
+                ButtonObject.DeactivateOthers();
             }
         }
     }
