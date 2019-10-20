@@ -18,9 +18,14 @@ public class Door : PuzzleElement
         } else {
             AnimTime = 0;
         }
-        TriggeredBy.ActivateEvent += new PuzzleElementEventHandler(OnActivate);
-        TriggeredBy.DeactivateEvent += new PuzzleElementEventHandler(OnDeactivate);
-        TriggeredBy.ToggleEvent += new PuzzleElementEventHandler(OnToggle);
+        if(TriggeredBy != null){
+            TriggeredBy.ActivateEvent += new PuzzleElementEventHandler(OnActivate);
+            TriggeredBy.DeactivateEvent += new PuzzleElementEventHandler(OnDeactivate);
+            TriggeredBy.ToggleEvent += new PuzzleElementEventHandler(OnToggle);
+        } else {
+            Debug.LogWarning("Door " + gameObject.name + " has no trigger.");
+        }
+        
     }
     
     void Start()

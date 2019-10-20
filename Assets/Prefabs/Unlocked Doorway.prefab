@@ -68,7 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   State: 0
   Activation: 0
-  TriggeredBy: {fileID: 6242405577447570723}
+  TriggeredBy: {fileID: 5340992700401442632}
   DoorSpeed: 1
 --- !u!1 &3032513230099278604
 GameObject:
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 6242405577447570732}
   - component: {fileID: 6242405577447570733}
   - component: {fileID: 6242405577447570722}
-  - component: {fileID: 6242405577447570723}
+  - component: {fileID: 5340992700401442632}
   m_Layer: 0
   m_Name: Interactable
   m_TagString: Interactable
@@ -218,7 +218,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 1661054875604344592, guid: 3073c9121c5140a40826a52bdeaaa349, type: 3}
---- !u!114 &6242405577447570723
+--- !u!114 &5340992700401442632
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -227,13 +227,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6242405577447570720}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 094b0f82e51241d4e85d3eef6c9c9e2a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4fb79e869cc1f7240b855984f3ac8f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
   Disabled: 0
   Interaction: 2
-  Tooltip: Press C to open/close door
+  Tooltip: Tooltip
+  RepeatDelay: 0.3
 --- !u!1 &6877663910990828510
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ public enum InteractType{
     OnlyOnce,
     Toggle
 }
-public class Interactable : PuzzleElement
+public abstract class Interactable : PuzzleElement
 {
     /*
         This class will be used for objects the player can interact 
@@ -21,11 +21,24 @@ public class Interactable : PuzzleElement
     public bool Disabled = false;
     public InteractType Interaction = InteractType.Repeatable;
     public string Tooltip="";
-    private bool FirstUsage = true;
+    public float RepeatDelay = 0.3f;  //object can only be interacted with every 0.3 seconds
+    protected float RepeatTimer = 0;
+    protected bool FirstUsage = true;
 
-    public void OnInteract(){
+
+    void Update(){
+        if(RepeatTimer > 0){
+            RepeatTimer -= Time.deltaTime;
+        } 
+    }
+    public abstract void OnInteract(); //Children decides interaction
+    public void DefaultInteract(){
         if(Disabled)
             return;
+        if(RepeatTimer > 0)
+            return;
+
+        RepeatTimer = RepeatDelay;
         switch(Interaction){
             case InteractType.Repeatable:
                 ActivateOthers();

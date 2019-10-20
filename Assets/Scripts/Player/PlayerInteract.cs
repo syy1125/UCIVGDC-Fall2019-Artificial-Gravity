@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour
 {
-    // Start is called before the first frame update
+    /*
+        This module raycasts from the player camera and calls OnInteract()
+        on any object tagged as "Interactable"
+     */
     private Transform HeadTransform;
     public float InteractDistance = 2.5f;
     public KeyCode InteractKey;

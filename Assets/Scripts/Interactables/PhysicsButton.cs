@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Button : PuzzleElement
+public class PhysicsButton : PuzzleElement
 {
-    // Start is called before the first frame update
+    /*
+        Floor button that can be activated by boxes or players
+     */
 
     private Animator ButtonAnimator;
     private GameObject Trigger;

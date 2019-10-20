@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4453843466556886689}
   - component: {fileID: 4453843466556886690}
-  - component: {fileID: 4453843466556886691}
+  - component: {fileID: 2844017964322020929}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -53,7 +53,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4453843466556886691
+--- !u!114 &2844017964322020929
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62,7 +62,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4453843466556886700}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4116676d4d3fc804abd925602be51d2e, type: 3}
+  m_Script: {fileID: 11500000, guid: df55166af3bd9914a9fbcbb7c47743ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 4453843468032926820}
   - component: {fileID: 4453843468032926821}
   - component: {fileID: 4453843468032926843}
-  - component: {fileID: 4453843468032926842}
+  - component: {fileID: 5706790954380622840}
   m_Layer: 8
   m_Name: Button Trigger
   m_TagString: Untagged
@@ -323,7 +323,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4453843468032926842
+--- !u!114 &5706790954380622840
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -332,10 +332,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4453843468032926823}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fa8b2b638cdbde4685396e724e87513, type: 3}
+  m_Script: {fileID: 11500000, guid: 28a539751c8030c4681ddf5f4e3c325f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ButtonObject: {fileID: 4453843466556886691}
+  ButtonObject: {fileID: 2844017964322020929}
   ActivationTags:
   - Player
   - PuzzleBox
