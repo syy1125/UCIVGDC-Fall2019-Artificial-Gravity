@@ -146,10 +146,11 @@ MonoBehaviour:
   Collider: {fileID: 8190977108810092170}
   WalkSpeed: 2
   AirborneForce: 1
+  JumpStrength: 1
   GroundMask:
     serializedVersion: 2
     m_Bits: 256
-  JumpStrength: 1
+  GroundDetectionRange: 0
 --- !u!114 &8666838238546424105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Gravity: {fileID: 2997386851078735336}
+  Movement: {fileID: 507347096044203682}
+  Look: {fileID: 963194229}
   RotationRate: 45
 --- !u!1 &6294477689393369683
 GameObject:

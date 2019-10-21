@@ -16,7 +16,7 @@ public class PlayerLook : MonoBehaviour
 
 	private float _angleY;
 
-	private float AngleY
+	public float AngleY
 	{
 		get => _angleY;
 		set => _angleY = Mathf.Clamp(value, MinY, MaxY);
@@ -34,7 +34,7 @@ public class PlayerLook : MonoBehaviour
 
 		Parent.Rotate(Vector3.up, Input.GetAxisRaw("Mouse X"));
 	}
-
+	
 	private void LateUpdate()
 	{
 		transform.localRotation = Quaternion.Euler(-AngleY, 0f, 0f);

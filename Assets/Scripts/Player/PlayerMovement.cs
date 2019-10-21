@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
 	private int _groundContactCount;
 
-	private bool Grounded
+	public bool Grounded
 	{
 		get
 		{

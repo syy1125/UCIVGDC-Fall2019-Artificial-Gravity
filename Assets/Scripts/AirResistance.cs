@@ -19,6 +19,6 @@ public class AirResistance : MonoBehaviour
 			localVelocity.y * VerticalFactor,
 			localVelocity.z * LateralFactor
 		);
-		Body.AddForce(resistance);
+		Body.AddForce(Transform.TransformVector(resistance));
 	}
 }
