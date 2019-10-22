@@ -12,7 +12,7 @@ public class GravityControl : MonoBehaviour
 	public GameObject SurfaceSnapArrow;
 	
 	[Header("Config")]
-	public LayerMask GroundMask;
+	public LayerMasks Masks;
 
 	private void Update()
 	{
@@ -21,7 +21,7 @@ public class GravityControl : MonoBehaviour
 		
 		if (Input.GetAxisRaw("Snap") > 0)
 		{
-			if (Physics.Raycast(t.position, t.forward, out RaycastHit hit, Mathf.Infinity, GroundMask.value))
+			if (Physics.Raycast(t.position, t.forward, out RaycastHit hit, Mathf.Infinity, Masks.GroundMask.value))
 			{
 				SurfaceSnapArrow.SetActive(true);
 				SurfaceSnapArrow.transform.SetPositionAndRotation(

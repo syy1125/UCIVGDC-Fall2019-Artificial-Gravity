@@ -9,6 +9,7 @@ public class PlayerOrientation : MonoBehaviour
 
 	[Header("Config")]
 	public float RotationRate;
+	public LayerMasks Masks;
 	/// <summary>
 	/// If there are platforms within this radius, airborne player will not orient to the direction they are looking in
 	/// </summary>
@@ -26,7 +27,7 @@ public class PlayerOrientation : MonoBehaviour
 				startRotation, Quaternion.FromToRotation(-t.up, Gravity.Down) * startRotation, MaxDegreesDelta
 			);
 		}
-		else if (!Physics.CheckSphere(t.position, DisableOrientRadius))
+		else if (!Physics.CheckSphere(t.position, DisableOrientRadius, Masks.GroundMask.value))
 		{
 			Vector3 oldUp = t.up;
 			t.rotation = Quaternion.RotateTowards(

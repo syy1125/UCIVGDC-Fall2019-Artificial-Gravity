@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 	public float WalkSpeed;
 	public float AirborneForce;
 	public float JumpStrength;
-	public LayerMask GroundMask;
+	public LayerMasks Masks;
 	[Range(0,1)]
 	public float GroundDetectionRange;
 
@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
 				t.TransformPoint(Collider.center + Vector3.up * (Collider.height / 2 - GroundDetectionRange)),
 				t.TransformPoint(Collider.center + Vector3.down * (Collider.height / 2 + GroundDetectionRange)),
 				Collider.radius,
-				GroundMask.value
+				Masks.GroundMask.value
 			);
 		}
 	}
@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
 	private void OnCollisionEnter(Collision other)
 	{
-		if (((1 << other.gameObject.layer) & GroundMask.value) != 0)
+		if (((1 << other.gameObject.layer) & Masks.GroundMask.value) != 0)
 		{
 			++_groundContactCount;
 		}
@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
 
 	private void OnCollisionExit(Collision other)
 	{
-		if (((1 << other.gameObject.layer) & GroundMask.value) != 0)
+		if (((1 << other.gameObject.layer) & Masks.GroundMask.value) != 0)
 		{
 			--_groundContactCount;
 		}
