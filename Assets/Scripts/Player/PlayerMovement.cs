@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
 	private Rigidbody Body => _body == null ? _body = GetComponentInParent<Rigidbody>() : _body;
 
 	[Header("References")]
-	public PlayerGravity Gravity;
+	public ArtificialGravity Gravity;
 	public CapsuleCollider Collider;
 
 	[Header("Config")]

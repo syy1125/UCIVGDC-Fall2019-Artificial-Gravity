@@ -10,10 +10,21 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="AirResistance.cs" t="Include" />
+          <e p="ArtificialGravity.cs" t="Include" />
+          <e p="Interactables" t="Include">
+            <e p="Door.cs" t="Include" />
+            <e p="EventTest.cs" t="Include" />
+            <e p="Interactable.cs" t="Include" />
+            <e p="InteractableButton.cs" t="Include" />
+            <e p="InteractableObject.cs" t="Include" />
+            <e p="PhysicsButton.cs" t="Include" />
+            <e p="PhysicsButtonTrigger.cs" t="Include" />
+            <e p="PuzzleElement.cs" t="Include" />
+          </e>
           <e p="NavballControl.cs" t="Include" />
           <e p="Player" t="Include">
             <e p="GravityControl.cs" t="Include" />
-            <e p="PlayerGravity.cs" t="Include" />
+            <e p="PlayerInteract.cs" t="Include" />
             <e p="PlayerLook.cs" t="Include" />
             <e p="PlayerMovement.cs" t="Include" />
             <e p="PlayerOrientation.cs" t="Include" />

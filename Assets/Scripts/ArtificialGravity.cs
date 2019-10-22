@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerGravity : MonoBehaviour
+public class ArtificialGravity : MonoBehaviour
 {
 	private Rigidbody _body;
 	private Rigidbody Body => _body == null ? _body = GetComponent<Rigidbody>() : _body;

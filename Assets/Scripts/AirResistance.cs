@@ -3,6 +3,10 @@ using UnityEngine.Serialization;
 
 public class AirResistance : MonoBehaviour
 {
+	[Header("References")]
+	public ArtificialGravity Gravity;
+	
+	[Header("Config")]
 	public float LateralFactor = 5;
 	public float VerticalFactor = 1;
 
@@ -13,12 +17,10 @@ public class AirResistance : MonoBehaviour
 
 	private void Update()
 	{
-		Vector3 localVelocity = Transform.InverseTransformVector(Body.velocity);
-		Vector3 resistance = -new Vector3(
-			localVelocity.x * LateralFactor,
-			localVelocity.y * VerticalFactor,
-			localVelocity.z * LateralFactor
-		);
-		Body.AddForce(Transform.TransformVector(resistance));
+		Vector3 velocity = Body.velocity;
+		Vector3 verticalVelocity = Vector3.Project(velocity, Gravity.Down);
+		Vector3 lateralVelocity = Vector3.ProjectOnPlane(velocity, Gravity.Down);
+		
+		Body.AddForce(-(lateralVelocity * LateralFactor + verticalVelocity * VerticalFactor));
 	}
 }

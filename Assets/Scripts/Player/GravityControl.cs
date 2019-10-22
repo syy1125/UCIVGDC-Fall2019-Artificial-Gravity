@@ -8,7 +8,7 @@ public class GravityControl : MonoBehaviour
 {
 	[Header("References")]
 	public PlayerLook Look;
-	public PlayerGravity Gravity;
+	public ArtificialGravity Gravity;
 	public GameObject SurfaceSnapArrow;
 	
 	[Header("Config")]

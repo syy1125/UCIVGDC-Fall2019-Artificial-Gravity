@@ -3,7 +3,7 @@
 public class PlayerOrientation : MonoBehaviour
 {
 	[Header("References")]
-	public PlayerGravity Gravity;
+	public ArtificialGravity Gravity;
 	public PlayerMovement Movement;
 	public PlayerLook Look;
 
