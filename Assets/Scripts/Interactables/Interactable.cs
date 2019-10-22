@@ -20,16 +20,26 @@ public abstract class Interactable : PuzzleElement
      */
     public bool Disabled = false;
     public InteractType Interaction = InteractType.Repeatable;
+    public PuzzleElement UnlockedBy; //Object is not interactable until unlocked by ActivateOthers()
     public string Tooltip="";
     public float RepeatDelay = 0.3f;  //object can only be interacted with every 0.3 seconds
     protected float RepeatTimer = 0;
     protected bool FirstUsage = true;
+    
 
+    void Start(){
+        if(UnlockedBy != null){
+            UnlockedBy.ActivateEvent += new PuzzleElementEventHandler(Unlock);
+        } 
+    }
 
     void Update(){
         if(RepeatTimer > 0){
             RepeatTimer -= Time.deltaTime;
         } 
+    }
+    public void Unlock(){
+        Disabled = false;
     }
     public abstract void OnInteract(); //Children decides interaction
     public void DefaultInteract(){
