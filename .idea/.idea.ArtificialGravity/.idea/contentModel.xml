@@ -22,6 +22,9 @@
             <e p="PuzzleElement.cs" t="Include" />
           </e>
           <e p="NavballControl.cs" t="Include" />
+          <e p="Objects" t="Include">
+            <e p="LayerMasks.cs" t="Include" />
+          </e>
           <e p="Player" t="Include">
             <e p="GravityControl.cs" t="Include" />
             <e p="PlayerInteract.cs" t="Include" />

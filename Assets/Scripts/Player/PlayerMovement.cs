@@ -9,18 +9,19 @@ public class PlayerMovement : MonoBehaviour
 	private Rigidbody Body => _body == null ? _body = GetComponentInParent<Rigidbody>() : _body;
 
 	[Header("References")]
-	public ArtificialGravity Gravity;
 	public CapsuleCollider Collider;
 
 	[Header("Config")]
 	public float WalkSpeed;
 	public float AirborneForce;
 	public float JumpStrength;
+	public float JumpCooldown;
 	public LayerMasks Masks;
-	[Range(0,1)]
+	[Range(0, 1)]
 	public float GroundDetectionRange;
 
 	private int _groundContactCount;
+	private float _lastJump;
 
 	public bool Grounded
 	{
@@ -61,9 +62,10 @@ public class PlayerMovement : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		if (Grounded && Input.GetAxisRaw("Jump") > 0)
+		if (Grounded && Time.time > _lastJump + JumpCooldown && Input.GetAxisRaw("Jump") > 0)
 		{
 			Body.AddForce(transform.up * JumpStrength, ForceMode.VelocityChange);
+			_lastJump = Time.time;
 		}
 	}
 
