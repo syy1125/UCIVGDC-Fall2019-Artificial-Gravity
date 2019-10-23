@@ -1,25 +1,35 @@
 ﻿using UnityEngine;
+using Debug = System.Diagnostics.Debug;
 
 public class FlashlightControl : MonoBehaviour
 {
-	private Camera _mainCamera;
+	private Transform _mainCamera;
 	public float FollowSpeed;
 	private Vector3 _offset;
 
 	private void Start()
 	{
-		_mainCamera = Camera.main;
-		_offset = _mainCamera.transform.InverseTransformVector(transform.position - _mainCamera.transform.position);
+		Debug.Assert(Camera.main != null);
+		_mainCamera = Camera.main.transform;
+		_offset = _mainCamera.InverseTransformVector(transform.position - _mainCamera.transform.position);
 	}
 
 	private void Update()
 	{
-		transform.rotation = Quaternion.Lerp(
-			transform.rotation, _mainCamera.transform.rotation, FollowSpeed * Time.deltaTime
+		Transform t = transform;
+
+		Quaternion startRotation = t.rotation;
+		Quaternion targetRotation = _mainCamera.rotation;
+		t.rotation = Quaternion.Lerp(
+			startRotation, targetRotation,
+			FollowSpeed * Quaternion.Angle(startRotation, targetRotation) / 30f * Time.deltaTime
 		);
-		Vector3 worldOffset = _mainCamera.transform.TransformVector(_offset);
-		transform.position = Vector3.Lerp(
-			transform.position, _mainCamera.transform.position + worldOffset, FollowSpeed * Time.deltaTime
+
+		Vector3 startPosition = t.position;
+		Vector3 targetPosition = _mainCamera.position + _mainCamera.TransformVector(_offset);
+		t.position = Vector3.Lerp(
+			startPosition, targetPosition,
+			FollowSpeed * (targetPosition - startPosition).magnitude / 0.5f * Time.deltaTime
 		);
 	}
 }
