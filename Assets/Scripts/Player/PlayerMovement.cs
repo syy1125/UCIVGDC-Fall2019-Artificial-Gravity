@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 	private Rigidbody Body => _body == null ? _body = GetComponentInParent<Rigidbody>() : _body;
 
 	[Header("References")]
+	public ArtificialGravity Gravity;
 	public CapsuleCollider Collider;
 
 	[Header("Config")]
@@ -30,8 +31,10 @@ public class PlayerMovement : MonoBehaviour
 			if (_groundContactCount <= 0) return false;
 			Transform t = transform;
 			return Physics.CheckCapsule(
-				t.TransformPoint(Collider.center + Vector3.up * (Collider.height / 2 - GroundDetectionRange)),
-				t.TransformPoint(Collider.center + Vector3.down * (Collider.height / 2 + GroundDetectionRange)),
+				t.TransformPoint(Collider.center + Vector3.up * Collider.height / 2)
+				+ Gravity.Down * GroundDetectionRange,
+				t.TransformPoint(Collider.center + Vector3.down * Collider.height / 2)
+				+ Gravity.Down * GroundDetectionRange,
 				Collider.radius,
 				Masks.GroundMask.value
 			);
