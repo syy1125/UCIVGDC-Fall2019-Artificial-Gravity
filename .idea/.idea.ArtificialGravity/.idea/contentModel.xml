@@ -12,8 +12,10 @@
           <e p="AirResistance.cs" t="Include" />
           <e p="ArtificialGravity.cs" t="Include" />
           <e p="Interactables" t="Include">
+            <e p="Collectible.cs" t="Include" />
             <e p="Door.cs" t="Include" />
             <e p="EventTest.cs" t="Include" />
+            <e p="FloatAndSpin.cs" t="Include" />
             <e p="Interactable.cs" t="Include" />
             <e p="InteractableButton.cs" t="Include" />
             <e p="InteractableObject.cs" t="Include" />
@@ -26,8 +28,10 @@
             <e p="LayerMasks.cs" t="Include" />
           </e>
           <e p="Player" t="Include">
+            <e p="FlashlightControl.cs" t="Include" />
             <e p="GravityControl.cs" t="Include" />
             <e p="PlayerInteract.cs" t="Include" />
+            <e p="PlayerInventory.cs" t="Include" />
             <e p="PlayerLook.cs" t="Include" />
             <e p="PlayerMovement.cs" t="Include" />
             <e p="PlayerOrientation.cs" t="Include" />
