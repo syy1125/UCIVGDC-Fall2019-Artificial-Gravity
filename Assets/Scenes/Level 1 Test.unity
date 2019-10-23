@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee458984a82b226468f6e7bef206b248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FollowSpeed: 3
+  FollowSpeed: 5
 --- !u!114 &643126794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -833,6 +833,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 192895564, guid: c878de159930a084980211ce22d00942, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c878de159930a084980211ce22d00942, type: 3}

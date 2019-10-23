@@ -2,11 +2,9 @@
 
 public class PlayerMovement : MonoBehaviour
 {
-	private Transform _parent;
-	private Transform Parent => _parent == null ? _parent = transform : _parent;
+	private Transform _transform;
 
 	private Rigidbody _body;
-	private Rigidbody Body => _body == null ? _body = GetComponentInParent<Rigidbody>() : _body;
 
 	[Header("References")]
 	public ArtificialGravity Gravity;
@@ -24,8 +22,32 @@ public class PlayerMovement : MonoBehaviour
 	private int _groundContactCount;
 	private float _lastJump;
 
-	public bool Grounded =>
-		_groundContactCount > 0 && Body.SweepTest(Gravity.Down, out RaycastHit _, GroundDetectionRange);
+	public bool Grounded
+	{
+		get
+		{
+			if (_groundContactCount <= 0) return false;
+			Vector3 point1 =
+				_transform.TransformPoint(Collider.center + Vector3.up * (Collider.height / 2 - Collider.radius))
+				- Gravity.Down * GroundDetectionRange;
+			Vector3 point2 =
+				_transform.TransformPoint(Collider.center + Vector3.down * (Collider.height / 2 - Collider.radius))
+				- Gravity.Down * GroundDetectionRange;
+			return Physics.CapsuleCast(
+				point1, point2,
+				Collider.radius,
+				Gravity.Down,
+				GroundDetectionRange * 2,
+				Masks.GroundMask.value
+			);
+		}
+	}
+
+	private void Start()
+	{
+		_transform = transform;
+		_body = GetComponent<Rigidbody>();
+	}
 
 	private void Update()
 	{
@@ -38,14 +60,14 @@ public class PlayerMovement : MonoBehaviour
 		if (Grounded)
 		{
 			input *= WalkSpeed;
-			Body.velocity = Parent.TransformDirection(
-				input.x, Parent.InverseTransformDirection(Body.velocity).y, input.z
+			_body.velocity = _transform.TransformDirection(
+				input.x, _transform.InverseTransformDirection(_body.velocity).y, input.z
 			);
 		}
 		else
 		{
 			input *= AirborneForce;
-			Body.AddForce(Parent.TransformDirection(input), ForceMode.Acceleration);
+			_body.AddForce(_transform.TransformDirection(input), ForceMode.Acceleration);
 		}
 	}
 
@@ -53,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (Grounded && Time.time > _lastJump + JumpCooldown && Input.GetAxisRaw("Jump") > 0)
 		{
-			Body.AddForce(transform.up * JumpStrength, ForceMode.VelocityChange);
+			_body.AddForce(transform.up * JumpStrength, ForceMode.VelocityChange);
 			_lastJump = Time.time;
 		}
 	}
