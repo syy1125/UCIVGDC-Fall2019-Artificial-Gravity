@@ -18,7 +18,7 @@ public class GravityControl : MonoBehaviour
 	{
 		Transform t = Look.transform;
 		
-		Vector3 newDown = t.forward;
+		Vector3? newDown = t.forward;
 		if (Input.GetAxisRaw("Snap") > 0)
 		{
 			if (Physics.Raycast(t.position, t.forward, out RaycastHit hit, Mathf.Infinity, Masks.GroundMask.value))
@@ -32,7 +32,7 @@ public class GravityControl : MonoBehaviour
 			}
 			else
 			{
-				return;
+				newDown = null;
 			}
 		}
 		else
@@ -40,10 +40,10 @@ public class GravityControl : MonoBehaviour
 			SurfaceSnapArrow.SetActive(false);
 		}
 
-		if (Input.GetKeyDown(KeyCode.Mouse0))
+		if (Input.GetKeyDown(KeyCode.Mouse0) && newDown != null)
 		{
 			Gravity.enabled = true;
-			Gravity.Down = newDown;
+			Gravity.Down = newDown.Value;
 		}
 		else if (Input.GetKeyDown(KeyCode.Mouse1))
 		{
