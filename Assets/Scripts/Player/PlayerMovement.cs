@@ -24,22 +24,8 @@ public class PlayerMovement : MonoBehaviour
 	private int _groundContactCount;
 	private float _lastJump;
 
-	public bool Grounded
-	{
-		get
-		{
-			if (_groundContactCount <= 0) return false;
-			Transform t = transform;
-			return Physics.CheckCapsule(
-				t.TransformPoint(Collider.center + Vector3.up * Collider.height / 2)
-				+ Gravity.Down * GroundDetectionRange,
-				t.TransformPoint(Collider.center + Vector3.down * Collider.height / 2)
-				+ Gravity.Down * GroundDetectionRange,
-				Collider.radius,
-				Masks.GroundMask.value
-			);
-		}
-	}
+	public bool Grounded =>
+		_groundContactCount > 0 && Body.SweepTest(Gravity.Down, out RaycastHit _, GroundDetectionRange);
 
 	private void Update()
 	{
