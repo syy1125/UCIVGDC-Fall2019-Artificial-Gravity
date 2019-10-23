@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Debug = System.Diagnostics.Debug;
 
-public class FlashlightControl : MonoBehaviour
+public class FlashlightPositionControl : MonoBehaviour
 {
 	private Transform _mainCamera;
 	public float FollowSpeed;

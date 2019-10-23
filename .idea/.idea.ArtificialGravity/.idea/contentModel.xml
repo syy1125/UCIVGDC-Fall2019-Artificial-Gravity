@@ -28,7 +28,8 @@
             <e p="LayerMasks.cs" t="Include" />
           </e>
           <e p="Player" t="Include">
-            <e p="FlashlightControl.cs" t="Include" />
+            <e p="FlashlightIntensityControl.cs" t="Include" />
+            <e p="FlashlightPositionControl.cs" t="Include" />
             <e p="GravityControl.cs" t="Include" />
             <e p="PlayerInteract.cs" t="Include" />
             <e p="PlayerInventory.cs" t="Include" />
