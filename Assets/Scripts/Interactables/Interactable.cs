@@ -20,17 +20,16 @@ public abstract class Interactable : PuzzleElement
      */
     public bool Disabled = false;
     public InteractType Interaction = InteractType.Repeatable;
-    public PuzzleElement UnlockedBy; //Object is not interactable until unlocked by ActivateOthers()
+    public string UnlockedBy; //should match item name in inventory
     public string Tooltip="";
     public float RepeatDelay = 0.3f;  //object can only be interacted with every 0.3 seconds
     protected float RepeatTimer = 0;
     protected bool FirstUsage = true;
+    private PlayerInventory Inventory;
     
 
     void Start(){
-        if(UnlockedBy != null){
-            UnlockedBy.ActivateEvent += new PuzzleElementEventHandler(Unlock);
-        } 
+        Inventory = PlayerInventory.Instance;
     }
 
     void Update(){
@@ -38,15 +37,21 @@ public abstract class Interactable : PuzzleElement
             RepeatTimer -= Time.deltaTime;
         } 
     }
-    public void Unlock(){
-        Disabled = false;
-    }
+    
     public abstract void OnInteract(); //Children decides interaction
     public void DefaultInteract(){
-        if(Disabled)
-            return;
+        if(Disabled){
+            if(Inventory.HasItem(UnlockedBy)){
+                //Continue if player has item;
+                Inventory.RemoveItem(UnlockedBy);
+                Disabled = false;
+            } else {
+                return;
+            }
+        }
         if(RepeatTimer > 0)
             return;
+
 
         RepeatTimer = RepeatDelay;
         switch(Interaction){

@@ -66,4 +66,11 @@ public class Door : PuzzleElement
             OnDeactivate();
         }
     }
+
+    void OnDrawGizmos(){
+        if(TriggeredBy != null){
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(transform.position,TriggeredBy.transform.position);
+        }
+    }
 }

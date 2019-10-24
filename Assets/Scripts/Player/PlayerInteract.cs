@@ -30,10 +30,13 @@ public class PlayerInteract : MonoBehaviour
 
         if(Physics.Raycast(HeadTransform.position,HeadTransform.forward,out hit,InteractDistance)){
             if(hit.collider.gameObject.CompareTag("Interactable")){
+                Interactable interactable = hit.collider.gameObject.GetComponent<Interactable>();
                 if(Input.GetKeyDown(InteractKey)){
-                    hit.collider.gameObject.GetComponent<Interactable>().OnInteract();
+                    interactable.OnInteract();
+                    TooltipText.text = interactable.Tooltip;
+                } else if(interactable.Disabled){
+                    TooltipText.text = "I need " + interactable.UnlockedBy;
                 }
-                TooltipText.text = hit.collider.gameObject.GetComponent<Interactable>().Tooltip;
             }
         } else {
             TooltipText.text = "";

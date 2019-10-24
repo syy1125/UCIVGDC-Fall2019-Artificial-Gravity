@@ -14,11 +14,11 @@ public class InteractableButton : Interactable
     
 
     public override void OnInteract(){
-        if(Disabled)
-            return;
         if(RepeatTimer > 0)
             return;
-        MyAnimator.Play("Button Press");
         DefaultInteract();
+        if(Disabled)
+            return;
+        MyAnimator.Play("Button Press");
     }
 }
