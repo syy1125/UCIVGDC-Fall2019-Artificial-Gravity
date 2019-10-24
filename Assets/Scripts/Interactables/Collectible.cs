@@ -9,10 +9,14 @@ public class Collectible : PuzzleElement
     private MeshRenderer MyRenderer;
 
     public string ItemName;
+    public Sprite ItemSprite;
     void Awake()
     {
         MyCollider = gameObject.GetComponent<Collider>();
         MyRenderer = gameObject.GetComponent<MeshRenderer>();
+    }
+    void Start(){
+        PlayerInventory.Instance.AddSprite(ItemName,ItemSprite);
     }
 
     // Update is called once per frame
