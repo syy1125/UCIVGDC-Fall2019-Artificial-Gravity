@@ -3126,6 +3126,7 @@ MonoBehaviour:
   UnlockedBy: 
   Tooltip: Press C to open door
   RepeatDelay: 0.3
+  InteractAnimation: 
 --- !u!1 &1383942122 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2616467214416537986, guid: bc324cef8ac261641a864f4ec5b0290f,
@@ -4528,7 +4529,7 @@ PrefabInstance:
     - target: {fileID: 7298316167966747884, guid: f6c811ccd22ac20408902f8afb4ece06,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5986280311782317823, guid: f6c811ccd22ac20408902f8afb4ece06,
         type: 3}
@@ -4884,7 +4885,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2092233500
 Transform:
   m_ObjectHideFlags: 0
@@ -5063,7 +5064,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2838053048659645578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5073,15 +5074,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2838053048659645577}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d868cbdfeffb7640b5e2c85b684589f, type: 3}
+  m_Script: {fileID: 11500000, guid: 4fb79e869cc1f7240b855984f3ac8f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
-  Disabled: 1
+  Disabled: 0
   Interaction: 2
-  UnlockedBy: Blue Keycard
-  Tooltip: Button
+  UnlockedBy: 
+  Tooltip: Tooltip
   RepeatDelay: 0.3
+  InteractAnimation: Button Press
 --- !u!65 &2838053048659645579
 BoxCollider:
   m_ObjectHideFlags: 0
