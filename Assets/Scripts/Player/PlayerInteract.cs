@@ -13,7 +13,7 @@ public class PlayerInteract : MonoBehaviour
     public float InteractDistance = 2.5f;
     public KeyCode InteractKey;
 
-    public Text TooltipText;
+    public static string HoverText=""; //This will be read by a Text UI object
     void Awake()
     {
         
@@ -29,24 +29,23 @@ public class PlayerInteract : MonoBehaviour
         RaycastHit hit;
 
         if(Physics.Raycast(HeadTransform.position,HeadTransform.forward,out hit,InteractDistance)){
-            if(hit.collider.gameObject.CompareTag("Interactable")){
-                Interactable interactable = hit.collider.gameObject.GetComponent<Interactable>();
+            Interactable interactable = hit.collider.gameObject.GetComponent<Interactable>();
+            if(interactable != null){
                 if(Input.GetKeyDown(InteractKey)){
                     interactable.OnInteract();
-                    TooltipText.text = interactable.Tooltip;
-                } else if(interactable.Disabled){
-                    TooltipText.text = "I need " + interactable.UnlockedBy;
-                }
+                } 
+                HoverText = interactable.HoverText();
+            } else {
+                HoverText = "";
             }
         } else {
-            TooltipText.text = "";
+            HoverText = "";
         }
     }
     void OnDrawGizmos(){
         if(!HeadTransform)
             return;
         Gizmos.color = Color.green;
-        Vector3 ASDF = HeadTransform.position;
 
         Gizmos.DrawWireSphere(HeadTransform.position+HeadTransform.forward*InteractDistance,.05f);
         Gizmos.DrawLine(HeadTransform.position,HeadTransform.position+HeadTransform.forward*InteractDistance);

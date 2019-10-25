@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6277195320648164897}
   - component: {fileID: 8907046635623739003}
   - component: {fileID: 1614891161978416394}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LowDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 5986280311782317823}
   - component: {fileID: 1614891162985997751}
   - component: {fileID: 1614891162985997748}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Doorway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 3324247109510051082}
   - component: {fileID: 6654302041993441207}
   - component: {fileID: 1614891162058574006}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LowDoorWay
   m_TagString: Untagged
   m_Icon: {fileID: 0}

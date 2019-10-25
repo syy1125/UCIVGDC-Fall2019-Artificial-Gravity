@@ -18,18 +18,23 @@ public abstract class Interactable : PuzzleElement
         OnlyOnce--Send activateOthers() only once
         Toggle--Swap between sending activateOthers() and deactivateOthers()
      */
-    public bool Disabled = false;
+    public bool Locked = false;
+    public string UnlockedByItem; //should match item name in inventory
     public InteractType Interaction = InteractType.Repeatable;
-    public string UnlockedBy; //should match item name in inventory
-    public string Tooltip="";
-    public float RepeatDelay = 0.3f;  //object can only be interacted with every 0.3 seconds
+    public string UnlockedHoverText="";
+    public string LockedHoverText="";
     protected float RepeatTimer = 0;
     protected bool FirstUsage = true;
     private PlayerInventory Inventory;
     
+    public float RepeatDelay = 0.3f;  //object can only be interacted with every 0.3 seconds
+    private string DefaultUnlockedHoverText;
+    private string DefaultLockedHoverText;
 
     void Start(){
         Inventory = PlayerInventory.Instance;
+        DefaultUnlockedHoverText = "Press E to use";
+        DefaultLockedHoverText = "I need " + UnlockedByItem;
     }
 
     void Update(){
@@ -37,14 +42,34 @@ public abstract class Interactable : PuzzleElement
             RepeatTimer -= Time.deltaTime;
         } 
     }
-    
+    public string HoverText(){
+        
+        if(Locked && !Inventory.HasItem(UnlockedByItem)){ //Item is not currently interactable
+            if(LockedHoverText != ""){ //HoverText manually entered
+                return LockedHoverText;
+            }
+            if(LockedHoverText == "" && UnlockedByItem == ""){ //locked and no way to unlock
+                return "";
+            } 
+            if(LockedHoverText == ""){ //locked with possible key
+                return DefaultLockedHoverText;
+            } 
+            return "";
+        } else { //Item can be interacted with
+            if(UnlockedHoverText != ""){ //HoverText manually entered
+                return UnlockedHoverText;
+            } else { //Use default hover text
+                return DefaultUnlockedHoverText;
+            }
+        }
+    }
     public abstract void OnInteract(); //Children decides interaction
     public void DefaultInteract(){
-        if(Disabled){
-            if(Inventory.HasItem(UnlockedBy)){
+        if(Locked){
+            if(Inventory.HasItem(UnlockedByItem)){
                 //Continue if player has item;
-                Inventory.RemoveItem(UnlockedBy);
-                Disabled = false;
+                Inventory.RemoveItem(UnlockedByItem);
+                Locked = false;
             } else {
                 return;
             }

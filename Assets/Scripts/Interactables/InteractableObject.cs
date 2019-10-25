@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class InteractableObject : Interactable
 {
-    /*
-        Generic interactable thing that doesn't have any special animation requirements.
-     */
+    
     private Animator MyAnimator;
-    public string InteractAnimation;
+    private string InteractAnimation = "On Interact"; //Should correspond with a state on the Animator
     void Awake()
     {
         MyAnimator = gameObject.GetComponent<Animator>();
     }    
     public override void OnInteract(){
-        if(MyAnimator != null && InteractAnimation != ""){
+        if(MyAnimator != null){
             if(RepeatTimer > 0)
                 return;
             DefaultInteract();
-            if(Disabled)
+            if(Locked)
                 return;
             MyAnimator.Play(InteractAnimation);
         } else {

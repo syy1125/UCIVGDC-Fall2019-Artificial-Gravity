@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 2988298233965183529}
   m_Layer: 0
   m_Name: Interactable Button
-  m_TagString: Interactable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -158,12 +158,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
-  Disabled: 0
+  Locked: 0
+  UnlockedByItem: 
   Interaction: 2
-  UnlockedBy: 
-  Tooltip: Tooltip
+  UnlockedHoverText: 
+  LockedHoverText: 
   RepeatDelay: 0.3
-  InteractAnimation: Button Press
 --- !u!1 &2988298234672573093
 GameObject:
   m_ObjectHideFlags: 0
