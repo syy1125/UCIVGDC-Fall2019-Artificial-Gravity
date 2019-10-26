@@ -9,9 +9,9 @@ public class FloatAndSpin : MonoBehaviour
     public float HeightDelta;
     public float FloatingRate;
     private float Timer;
-    void Start()
+    void Awake()
     {
-        
+        transform.Rotate(0,Random.Range(0,Mathf.PI*2),0);
     }
 
     // Update is called once per frame

@@ -28,10 +28,11 @@ public class BreakableWall : MonoBehaviour
         Exploded = true;
         foreach (Rigidbody rb in Rigibodies)
         {
+            
             rb.isKinematic = false;
             rb.gameObject.layer = LayerMask.NameToLayer(PhysicsLayer);
             if (rb != null)
-                rb.AddExplosionForce(ExplosionForce, transform.position +ExplosionOffset, ExplosionRadius);
+                rb.AddExplosionForce(ExplosionForce, transform.position +transform.forward*ExplosionOffset.z+transform.right*ExplosionOffset.x+transform.up*ExplosionOffset.y, ExplosionRadius);
         }
     }
     private Rigidbody[] GetChildren(GameObject Geometry){
