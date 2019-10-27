@@ -11,18 +11,22 @@
         <e p="Scripts" t="Include">
           <e p="AirResistance.cs" t="Include" />
           <e p="ArtificialGravity.cs" t="Include" />
+          <e p="BreakableWall.cs" t="Include" />
+          <e p="BreakableWallTrigger.cs" t="Include" />
+          <e p="ExplosionTest.cs" t="Include" />
           <e p="Interactables" t="Include">
             <e p="Collectible.cs" t="Include" />
             <e p="Door.cs" t="Include" />
             <e p="EventTest.cs" t="Include" />
             <e p="FloatAndSpin.cs" t="Include" />
             <e p="Interactable.cs" t="Include" />
-            <e p="InteractableButton.cs" t="Include" />
             <e p="InteractableObject.cs" t="Include" />
+            <e p="LaserGrid.cs" t="Include" />
             <e p="PhysicsButton.cs" t="Include" />
             <e p="PhysicsButtonTrigger.cs" t="Include" />
             <e p="PuzzleElement.cs" t="Include" />
           </e>
+          <e p="LaserCrackle.cs" t="Include" />
           <e p="NavballControl.cs" t="Include" />
           <e p="Objects" t="Include">
             <e p="LayerMasks.cs" t="Include" />
@@ -36,15 +40,19 @@
             <e p="PlayerLook.cs" t="Include" />
             <e p="PlayerMovement.cs" t="Include" />
             <e p="PlayerOrientation.cs" t="Include" />
+            <e p="PlayerState.cs" t="Include" />
+          </e>
+          <e p="UI" t="Include">
+            <e p="DeathScreenController.cs" t="Include" />
+            <e p="HoverTextUI.cs" t="Include" />
+            <e p="InventoryUI.cs" t="Include" />
           </e>
         </e>
       </e>
       <e p="Library" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
-      <e p="Temp" t="ExcludeRecursive">
-        <e p="bin" t="ExcludeRecursive" />
-      </e>
+      <e p="Temp\bin" t="ExcludeRecursive" />
     </e>
   </component>
 </project>

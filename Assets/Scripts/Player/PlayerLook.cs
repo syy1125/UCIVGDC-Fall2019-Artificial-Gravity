@@ -6,11 +6,6 @@ public class PlayerLook : MonoBehaviour
 	private Transform _parent;
 	private Transform Parent => _parent == null ? _parent = transform.parent : _parent;
 
-	private CapsuleCollider _collider;
-
-	private CapsuleCollider Collider =>
-		_collider == null ? _collider = Parent.GetComponent<CapsuleCollider>() : _collider;
-
 	public float MinY;
 	public float MaxY;
 
@@ -26,6 +21,7 @@ public class PlayerLook : MonoBehaviour
 	private void OnEnable()
 	{
 		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
 	}
 
 	private void Update()
@@ -43,5 +39,6 @@ public class PlayerLook : MonoBehaviour
 	private void OnDisable()
 	{
 		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
 	}
 }
