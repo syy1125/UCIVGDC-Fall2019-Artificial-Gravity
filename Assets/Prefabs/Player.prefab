@@ -45,7 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Look: {fileID: 963194229}
   Gravity: {fileID: 2997386851078735336}
-  SurfaceSnapArrow: {fileID: 0}
+  SurfaceSnapArrowPrefab: {fileID: 2616467214416537986, guid: bc324cef8ac261641a864f4ec5b0290f,
+    type: 3}
   Masks: {fileID: 11400000, guid: 6debccdb348f5be4a9ccef55d27f6e60, type: 2}
 --- !u!1 &1618270098096371965
 GameObject:

@@ -9,10 +9,18 @@ public class GravityControl : MonoBehaviour
 	[Header("References")]
 	public PlayerLook Look;
 	public ArtificialGravity Gravity;
-	public GameObject SurfaceSnapArrow;
+	public GameObject SurfaceSnapArrowPrefab;
 
 	[Header("Config")]
 	public LayerMasks Masks;
+
+	private GameObject _arrow;
+
+	private void Start()
+	{
+		_arrow = Instantiate(SurfaceSnapArrowPrefab);
+		_arrow.SetActive(false);
+	}
 
 	private void Update()
 	{
@@ -23,8 +31,8 @@ public class GravityControl : MonoBehaviour
 		{
 			if (Physics.Raycast(t.position, t.forward, out RaycastHit hit, Mathf.Infinity, Masks.GroundMask.value))
 			{
-				SurfaceSnapArrow.SetActive(true);
-				SurfaceSnapArrow.transform.SetPositionAndRotation(
+				_arrow.SetActive(true);
+				_arrow.transform.SetPositionAndRotation(
 					hit.point,
 					Quaternion.LookRotation(-hit.normal)
 				);
@@ -37,7 +45,7 @@ public class GravityControl : MonoBehaviour
 		}
 		else
 		{
-			SurfaceSnapArrow.SetActive(false);
+			_arrow.SetActive(false);
 		}
 
 		if (Input.GetKeyDown(KeyCode.Mouse0) && newDown != null)
