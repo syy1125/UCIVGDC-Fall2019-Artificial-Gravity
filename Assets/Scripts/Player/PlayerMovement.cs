@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -33,9 +34,19 @@ public class PlayerMovement : MonoBehaviour
 			Vector3 point2 =
 				_transform.TransformPoint(Collider.center + Vector3.down * (Collider.height / 2 - Collider.radius))
 				- Gravity.Down * GroundDetectionRange;
+
+			Vector3 scale = _transform.lossyScale;
+			const float tolerance = 1e-6f;
+			if (Mathf.Abs(scale.x - scale.y) > tolerance || Mathf.Abs(scale.x - scale.z) > tolerance)
+			{
+				Debug.LogWarning(
+					"The player does not have uniform scaling in all three dimensions.\n"
+					+ "This may cause wonky behaviour with ground detection."
+				);
+			}
 			return Physics.CapsuleCast(
 				point1, point2,
-				Collider.radius,
+				Collider.radius * (scale.x / 3 + scale.y / 3 + scale.z / 3),
 				Gravity.Down,
 				GroundDetectionRange * 2,
 				Masks.GroundMask.value
