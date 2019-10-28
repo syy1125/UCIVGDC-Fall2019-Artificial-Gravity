@@ -17,4 +17,10 @@ public class ArtificialGravity : MonoBehaviour
 	{
 		Body.AddForce(Down * Gravity, ForceMode.Acceleration);
 	}
+
+	private void OnDrawGizmosSelected()
+	{
+		Gizmos.color = Color.blue;
+		Gizmos.DrawRay(transform.position, Down);
+	}
 }
