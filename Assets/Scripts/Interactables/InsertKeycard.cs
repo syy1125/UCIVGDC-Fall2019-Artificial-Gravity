@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+// This class was used instead of an animation controller because the animation controller never does what I want it to.
 public class InsertKeycard : Interactable
 {
 	[Header("References")]
