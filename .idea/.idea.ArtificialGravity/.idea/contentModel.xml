@@ -19,6 +19,7 @@
             <e p="Door.cs" t="Include" />
             <e p="EventTest.cs" t="Include" />
             <e p="FloatAndSpin.cs" t="Include" />
+            <e p="InsertKeycard.cs" t="Include" />
             <e p="Interactable.cs" t="Include" />
             <e p="InteractableObject.cs" t="Include" />
             <e p="LaserGrid.cs" t="Include" />
@@ -28,9 +29,6 @@
           </e>
           <e p="LaserCrackle.cs" t="Include" />
           <e p="NavballControl.cs" t="Include" />
-          <e p="Objects" t="Include">
-            <e p="LayerMasks.cs" t="Include" />
-          </e>
           <e p="Player" t="Include">
             <e p="FlashlightIntensityControl.cs" t="Include" />
             <e p="FlashlightPositionControl.cs" t="Include" />
@@ -41,6 +39,9 @@
             <e p="PlayerMovement.cs" t="Include" />
             <e p="PlayerOrientation.cs" t="Include" />
             <e p="PlayerState.cs" t="Include" />
+          </e>
+          <e p="ScriptableObjects" t="Include">
+            <e p="LayerMasks.cs" t="Include" />
           </e>
           <e p="UI" t="Include">
             <e p="DeathScreenController.cs" t="Include" />
