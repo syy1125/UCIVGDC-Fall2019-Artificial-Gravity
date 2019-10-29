@@ -32,6 +32,7 @@
           <e p="Player" t="Include">
             <e p="FlashlightIntensityControl.cs" t="Include" />
             <e p="FlashlightPositionControl.cs" t="Include" />
+            <e p="GravitonSurge.cs" t="Include" />
             <e p="GravityControl.cs" t="Include" />
             <e p="PlayerInteract.cs" t="Include" />
             <e p="PlayerInventory.cs" t="Include" />
@@ -45,6 +46,7 @@
           </e>
           <e p="UI" t="Include">
             <e p="DeathScreenController.cs" t="Include" />
+            <e p="GravitonSurgeChargeBar.cs" t="Include" />
             <e p="HoverTextUI.cs" t="Include" />
             <e p="InventoryUI.cs" t="Include" />
           </e>
