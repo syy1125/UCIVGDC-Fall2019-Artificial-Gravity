@@ -6,12 +6,13 @@ public class LaserGrid : PuzzleElement
 {
     public ActivationType Activation = ActivationType.Standard;
     public PuzzleElement DisabledBy;
-    private GameObject Child; 
+    private Collider LaserCollider;
+    public GameObject LaserParent; 
     private Light[] Lights;
 
     void Awake(){
-        Child = GetComponentInChildren<Collider>().gameObject;
         Lights = GetComponentsInChildren<Light>();
+        LaserCollider = GetComponent<Collider>();
         if(DisabledBy != null){
             DisabledBy.ActivateEvent += new PuzzleElementEventHandler(OnActivate);
             DisabledBy.DeactivateEvent += new PuzzleElementEventHandler(OnDeactivate);
@@ -20,7 +21,8 @@ public class LaserGrid : PuzzleElement
     }
     void Update(){
         //A Child is disabled because this current gameObject must be enabled to receive events.
-        Child.SetActive(State==1);
+        LaserParent.SetActive(State==1);
+        LaserCollider.enabled = (State==1);
         foreach(Light l in Lights){
             l.enabled = (State==1);
         }
@@ -28,6 +30,7 @@ public class LaserGrid : PuzzleElement
     void OnTriggerEnter(Collider collider){
         PlayerState Player = collider.GetComponent<PlayerState>();
         if(Player != null){
+            print("HEY");
             Player.KillPlayer();
         }
     }
