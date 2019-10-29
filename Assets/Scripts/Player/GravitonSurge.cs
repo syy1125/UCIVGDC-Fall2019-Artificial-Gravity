@@ -36,7 +36,7 @@ public class GravitonSurge : MonoBehaviour
 			Gravity.Gravity = _baseGravity;
 			if (Time.time - _lastActive > RechargeDelay)
 			{
-				Charge += Time.deltaTime * RechargeRate;
+				Charge = Mathf.Min(Charge + Time.deltaTime * RechargeRate, MaxDuration);
 			}
 		}
 	}
