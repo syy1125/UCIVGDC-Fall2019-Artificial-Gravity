@@ -7,9 +7,17 @@ public class PlayerState : MonoBehaviour
     /*
     Currently keeps track of whether or not player is dead.
      */
-    private bool Dead = false;
+    public static bool Dead;
+    public static bool Paused;
+    private PlayerLook _look;
 
+    void Awake(){
+        Dead = false;
+        Paused = false;
+        _look = GetComponentInChildren<PlayerLook>();
+    }
     void Update(){
+        _look.enabled = (!Paused);
     }
     public void KillPlayer(){
         Dead = true;

@@ -23,6 +23,8 @@ public class PlayerInteract : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(PlayerState.Paused)
+            return;
         rayCast();
     }
     public void rayCast(){
