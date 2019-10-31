@@ -5,6 +5,7 @@ using UnityEngine;
 public class LaserCrackle : MonoBehaviour
 {
     // Start is called before the first frame update
+    public float LaserLength = 1;
     public int NumInnerPoints;
     public float RedrawDelay;
     private float RedrawTimer = 0;
@@ -33,11 +34,11 @@ public class LaserCrackle : MonoBehaviour
         }
     }
     private void Redraw(){
-        Points[0] = new Vector3(-0.5f,0,0); //First point is fixed
-        Points[Points.Length-1] = new Vector3(0.5f,0,0); //Last point is fixed
-        float _step = 1f/(NumInnerPoints+2);
+        Points[0] = new Vector3(-LaserLength/2,0,0); //First point is fixed
+        Points[Points.Length-1] = new Vector3(LaserLength/2,0,0); //Last point is fixed
+        float _step = (LaserLength)/(NumInnerPoints+2);
         for(int i = 1; i < Points.Length-1; i++){ //Loop through inner points
-            Points[i] = JitterPoint(new Vector3(-0.5f+_step*i,0,0));
+            Points[i] = JitterPoint(new Vector3(-(LaserLength/2)+_step*i,0,0));
         }
         MyRenderer.SetPositions(Points);
     }
