@@ -41,6 +41,7 @@
             <e p="PlayerOrientation.cs" t="Include" />
             <e p="PlayerState.cs" t="Include" />
           </e>
+          <e p="RotateStars.cs" t="Include" />
           <e p="ScriptableObjects" t="Include">
             <e p="LayerMasks.cs" t="Include" />
           </e>
@@ -49,13 +50,21 @@
             <e p="GravitonSurgeChargeBar.cs" t="Include" />
             <e p="HoverTextUI.cs" t="Include" />
             <e p="InventoryUI.cs" t="Include" />
+            <e p="MainMenuController.cs" t="Include" />
+            <e p="PauseMenuController.cs" t="Include" />
+            <e p="Transition.cs" t="Include" />
           </e>
+        </e>
+        <e p="Shaders" t="Include">
+          <e p="Outline.shader" t="Include" />
         </e>
       </e>
       <e p="Library" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
-      <e p="Temp\bin" t="ExcludeRecursive" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
     </e>
   </component>
 </project>
