@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1209858838}
   - component: {fileID: 3341128929781735273}
+  - component: {fileID: 6912413759950152724}
   m_Layer: 0
   m_Name: Abilities
   m_TagString: Untagged
@@ -48,6 +49,23 @@ MonoBehaviour:
   SurfaceSnapArrowPrefab: {fileID: 2616467214416537986, guid: bc324cef8ac261641a864f4ec5b0290f,
     type: 3}
   Masks: {fileID: 11400000, guid: 6debccdb348f5be4a9ccef55d27f6e60, type: 2}
+--- !u!114 &6912413759950152724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209858837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 901de942012e81f41b5be963bb290375, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Gravity: {fileID: 2997386851078735336}
+  Multiplier: 10
+  MaxDuration: 2
+  RechargeDelay: 1
+  RechargeRate: 0.5
 --- !u!1 &1618270098096371965
 GameObject:
   m_ObjectHideFlags: 0

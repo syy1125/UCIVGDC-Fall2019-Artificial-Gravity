@@ -45,6 +45,7 @@
           <e p="ScriptableObjects" t="Include">
             <e p="LayerMasks.cs" t="Include" />
           </e>
+          <e p="ShaderLabCamera.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="DeathScreenController.cs" t="Include" />
             <e p="GravitonSurgeChargeBar.cs" t="Include" />
@@ -56,6 +57,7 @@
           </e>
         </e>
         <e p="Shaders" t="Include">
+          <e p="Crosshair.shader" t="Include" />
           <e p="Outline.shader" t="Include" />
         </e>
       </e>
