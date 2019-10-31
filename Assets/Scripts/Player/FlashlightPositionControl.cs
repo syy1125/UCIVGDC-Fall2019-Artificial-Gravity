@@ -11,7 +11,7 @@ public class FlashlightPositionControl : MonoBehaviour
 	{
 		Debug.Assert(Camera.main != null);
 		_mainCamera = Camera.main.transform;
-		_offset = _mainCamera.InverseTransformVector(transform.position - _mainCamera.transform.position);
+		_offset = _mainCamera.InverseTransformPoint(_mainCamera.transform.position);
 	}
 
 	private void Update()
@@ -26,7 +26,7 @@ public class FlashlightPositionControl : MonoBehaviour
 		);
 
 		Vector3 startPosition = t.position;
-		Vector3 targetPosition = _mainCamera.position + _mainCamera.TransformVector(_offset);
+		Vector3 targetPosition = _mainCamera.TransformPoint(_offset);
 		t.position = Vector3.Lerp(
 			startPosition, targetPosition,
 			FollowSpeed * (targetPosition - startPosition).magnitude / 0.5f * Time.deltaTime
