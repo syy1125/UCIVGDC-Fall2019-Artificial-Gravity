@@ -13,7 +13,7 @@ public class ArtificialGravity : MonoBehaviour
 		set => _down = value.normalized;
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
 		Body.AddForce(Down * Gravity, ForceMode.Acceleration);
 	}

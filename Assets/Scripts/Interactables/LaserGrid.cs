@@ -28,10 +28,9 @@ public class LaserGrid : PuzzleElement
         }
     }
     void OnTriggerEnter(Collider collider){
-        PlayerState Player = collider.GetComponent<PlayerState>();
-        if(Player != null){
-            print("HEY");
-            Player.KillPlayer();
+        Player player = collider.GetComponent<Player>();
+        if(player != null){
+            player.KillPlayer();
         }
     }
     public void OnActivate(){

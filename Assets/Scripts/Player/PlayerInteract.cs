@@ -11,7 +11,7 @@ public class PlayerInteract : MonoBehaviour
      */
     private Transform HeadTransform;
     public float InteractDistance = 2.5f;
-    public KeyCode InteractKey;
+    public string InteractKey = "e";
 
     public static string HoverText=""; //This will be read by a Text UI object
     void Awake()
@@ -23,7 +23,7 @@ public class PlayerInteract : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(PlayerState.Paused)
+        if(Player.Paused)
             return;
         rayCast();
     }
@@ -33,7 +33,7 @@ public class PlayerInteract : MonoBehaviour
         if(Physics.Raycast(HeadTransform.position,HeadTransform.forward,out hit,InteractDistance)){
             Interactable interactable = hit.collider.gameObject.GetComponent<Interactable>();
             if(interactable != null){
-                if(Input.GetKeyDown(InteractKey)){
+                if(Player.KeyDown(InteractKey)){
                     interactable.OnInteract();
                 } 
                 HoverText = interactable.HoverText();

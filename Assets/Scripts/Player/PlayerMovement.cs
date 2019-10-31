@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
 	private int _groundContactCount;
 	private float _lastJump;
 
+	private Vector3 _directionalInput;
+
 	public bool Grounded
 	{
 		get
@@ -62,23 +64,15 @@ public class PlayerMovement : MonoBehaviour
 
 	private void Update()
 	{
-		var input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-		if (input.magnitude > 1)
-		{
-			input.Normalize();
-		}
-
+		if(Player.Dead || Player.Paused)
+			return;
+		_directionalInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 		if (Grounded)
 		{
-			input *= WalkSpeed;
+			_directionalInput *= WalkSpeed;
 			_body.velocity = _transform.TransformDirection(
-				input.x, _transform.InverseTransformDirection(_body.velocity).y, input.z
+				_directionalInput.x, _transform.InverseTransformDirection(_body.velocity).y, _directionalInput.z
 			);
-		}
-		else
-		{
-			input *= AirborneForce;
-			_body.AddForce(_transform.TransformDirection(input), ForceMode.Acceleration);
 		}
 	}
 
@@ -88,6 +82,12 @@ public class PlayerMovement : MonoBehaviour
 		{
 			_body.AddForce(transform.up * JumpStrength, ForceMode.VelocityChange);
 			_lastJump = Time.time;
+		}
+		
+		if(!Grounded)
+		{
+			_directionalInput *= AirborneForce;
+			_body.AddForce(_transform.TransformDirection(_directionalInput), ForceMode.Acceleration);
 		}
 	}
 

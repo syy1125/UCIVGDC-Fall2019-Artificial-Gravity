@@ -48,12 +48,12 @@ public class GravityControl : MonoBehaviour
 			_arrow.SetActive(false);
 		}
 
-		if (Input.GetKeyDown(KeyCode.Mouse0) && newDown != null)
+		if (Player.KeyDown(KeyCode.Mouse0) && newDown != null)
 		{
 			Gravity.enabled = true;
 			Gravity.Down = newDown.Value;
 		}
-		else if (Input.GetKeyDown(KeyCode.Mouse1))
+		else if (Player.KeyDown(KeyCode.Mouse1))
 		{
 			var input = new Vector3(
 				Input.GetAxisRaw("Horizontal"),

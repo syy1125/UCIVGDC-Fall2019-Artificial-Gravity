@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class DeathScreenController : MonoBehaviour
 {
 	[Header("References")]
-	public GameObject Player;
 	public Button RespawnButton;
 
 	[Header("Config")]
@@ -16,15 +15,8 @@ public class DeathScreenController : MonoBehaviour
 	
 	private IEnumerator Start()
 	{
-		var state = Player.GetComponent<PlayerState>();
-		yield return new WaitUntil(() => state.isDead());
+		yield return new WaitUntil(() => Player.Dead);
 
-		// Detach camera from player to avoid rendering cutting off at death
-		var playerCamera = Player.GetComponentInChildren<Camera>();
-		playerCamera.transform.SetParent(null);
-		playerCamera.GetComponent<PlayerLook>().enabled = false;
-		Player.SetActive(false);
-		
 		var group = GetComponent<CanvasGroup>();
 		group.interactable = true;
 		group.blocksRaycasts = true;

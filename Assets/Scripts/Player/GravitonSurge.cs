@@ -25,7 +25,7 @@ public class GravitonSurge : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetKey(KeyCode.X) && Charge > 0)
+		if (Player.Key(KeyCode.X) && Charge > 0)
 		{
 			Gravity.Gravity = _surgeGravity;
 			Charge -= Time.deltaTime;

@@ -26,9 +26,12 @@ public class PlayerLook : MonoBehaviour
 
 	private void Update()
 	{
-		AngleY += Input.GetAxisRaw("Mouse Y");
-
-		Parent.Rotate(Vector3.up, Input.GetAxisRaw("Mouse X"));
+		if(!(Player.Dead || Player.Paused))
+		{
+			AngleY += Input.GetAxisRaw("Mouse Y");
+			Parent.Rotate(Vector3.up, Input.GetAxisRaw("Mouse X"));
+		}
+		
 	}
 	
 	private void LateUpdate()

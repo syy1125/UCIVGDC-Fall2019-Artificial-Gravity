@@ -19,10 +19,10 @@ public class PauseMenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(PlayerState.Dead)
+        if(Player.Dead)
             return;
         if(Input.GetKeyDown(PauseKey)){
-            if(!PlayerState.Paused){
+            if(!Player.Paused){
                 Pause();
             } else {
                 Unpause();
@@ -35,7 +35,7 @@ public class PauseMenuController : MonoBehaviour
         _canvasGroup.blocksRaycasts = true;
         _canvasGroup.interactable = true;
         _eventSystem.SetSelectedGameObject(DefaultButton);
-        PlayerState.Paused = true;
+        Player.Paused = true;
 
     }
     public void Unpause(){
@@ -44,7 +44,7 @@ public class PauseMenuController : MonoBehaviour
         _canvasGroup.blocksRaycasts = false;
         _canvasGroup.interactable = false;
         _eventSystem.SetSelectedGameObject(null);
-        PlayerState.Paused = false;
+        Player.Paused = false;
     }
     public void MainMenuPress(){
         _canvasGroup.interactable = false;
