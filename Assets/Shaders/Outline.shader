@@ -31,31 +31,50 @@
             CGPROGRAM
             
             #pragma vertex vert
+            #pragma geometry geom
             #pragma fragment frag
             
             #include "UnityCG.cginc"
             
-            struct v2f
-            {
-                float4 vertex : SV_POSITION;
-                float4 origin : TEXCOORD0;
-                float4 color : COLOR;
-            };
-            
             float4 _OutlineColor;
             float _OutlineWidth;
             
-            v2f vert(appdata_base v)
+            struct v2g
             {
-                v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex * (1 + _OutlineWidth));
-                o.color = _OutlineColor;
+                float4 pos : SV_POSITION;
+            };
+            
+            struct g2f
+            {
+                float4 pos : SV_POSITION;
+            };
+            
+            v2g vert(appdata_full i)
+            {
+                v2g o;
+                o.pos = i.vertex;
                 return o;
             }
             
-            float4 frag(v2f i) : SV_Target
+            [maxvertexcount(3)]
+            void geom(triangle v2g i[3], inout TriangleStream<g2f> o)
             {
-                return i.color;
+                g2f v0;
+                v0.pos = UnityObjectToClipPos(i[0].pos.xyz * (1 + _OutlineWidth / length(i[0].pos.xyz)));
+                o.Append(v0);
+                
+                g2f v1;
+                v1.pos = UnityObjectToClipPos(i[1].pos.xyz * (1 + _OutlineWidth / length(i[1].pos.xyz)));
+                o.Append(v1);
+                
+                g2f v2;
+                v2.pos = UnityObjectToClipPos(i[2].pos.xyz * (1 + _OutlineWidth / length(i[2].pos.xyz)));
+                o.Append(v2);
+            }
+            
+            float4 frag(g2f i) : SV_Target
+            {
+                return _OutlineColor;
             }
             
             ENDCG
