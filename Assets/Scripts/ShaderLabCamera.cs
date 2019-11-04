@@ -6,8 +6,6 @@ public class ShaderLabCamera : MonoBehaviour
 	private float _theta;
 	private float _phi;
 
-	public Material Shader;
-
 	private void Start()
 	{
 		Vector3 position = transform.position;
@@ -28,10 +26,5 @@ public class ShaderLabCamera : MonoBehaviour
 			_radius * Mathf.Cos(_phi) * Mathf.Sin(_theta)
 		);
 		transform.rotation = Quaternion.LookRotation(-transform.position);
-	}
-
-	private void OnRenderImage(RenderTexture src, RenderTexture dest)
-	{
-		Graphics.Blit(src, dest, Shader);
 	}
 }

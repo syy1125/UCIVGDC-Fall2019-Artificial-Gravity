@@ -34,12 +34,12 @@
             <e p="FlashlightPositionControl.cs" t="Include" />
             <e p="GravitonSurge.cs" t="Include" />
             <e p="GravityControl.cs" t="Include" />
+            <e p="Player.cs" t="Include" />
             <e p="PlayerInteract.cs" t="Include" />
             <e p="PlayerInventory.cs" t="Include" />
             <e p="PlayerLook.cs" t="Include" />
             <e p="PlayerMovement.cs" t="Include" />
             <e p="PlayerOrientation.cs" t="Include" />
-            <e p="PlayerState.cs" t="Include" />
           </e>
           <e p="RotateStars.cs" t="Include" />
           <e p="ScriptableObjects" t="Include">
@@ -57,7 +57,7 @@
           </e>
         </e>
         <e p="Shaders" t="Include">
-          <e p="Crosshair.shader" t="Include" />
+          <e p="Invert.shader" t="Include" />
           <e p="Outline.shader" t="Include" />
         </e>
       </e>

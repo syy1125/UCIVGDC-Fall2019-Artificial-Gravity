@@ -1,4 +1,4 @@
-﻿Shader "Custom/Crosshair"
+﻿Shader "Custom/Invert"
 {
     Properties
     {
@@ -6,9 +6,13 @@
     }
     SubShader
     {
-        // No culling or depth
-        Cull Off ZWrite Off ZTest Always
+        Tags { "RenderType"="Opaque" }
+        LOD 100
 
+        GrabPass
+        {
+            "_GrabTex"
+        }
         Pass
         {
             CGPROGRAM
@@ -25,35 +29,30 @@
 
             struct v2f
             {
-                float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
+                float2 uv : TEXCOORD0;
+                float4 grab : TEXCOORD1;
             };
+
+            sampler2D _MainTex;
+            sampler2D _GrabTex;
+            float4 _MainTex_ST;
 
             v2f vert (appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = v.uv;
+                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                o.grab = ComputeGrabScreenPos(o.vertex);
                 return o;
             }
 
-            sampler2D _MainTex;
-
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed4 col = tex2D(_MainTex, i.uv);
+                fixed4 texCol = tex2D(_MainTex, i.uv);
+                fixed4 grabCol = tex2Dproj(_GrabTex, i.grab);
                 
-                // Invert the color if it's at the center
-                float xoff = abs((i.uv.x - 0.5) * _ScreenParams.x);
-                float yoff = abs((i.uv.y - 0.5) * _ScreenParams.y);
-                
-                if ((xoff < 20 && yoff < 1)
-                    || (xoff < 1 && yoff < 20))
-                { 
-                    col = 1 - col;
-                }
-                
-                return col;
+                return grabCol * (1 - texCol.a) + (1 - grabCol) * texCol.a;
             }
             ENDCG
         }
