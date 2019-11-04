@@ -8,7 +8,7 @@
         _Metallic ("Metallic", Range(0,1)) = 0.0
 
         _OutlineColor ("Outline Color", Color) = (1,1,1,1)
-        _OutlineWidth ("Outline Width", Range(0.01,1)) = 0.1        
+        _OutlineWidth ("Outline Width", Range(0.01,10)) = 0.2      
     }
     SubShader
     {
@@ -31,7 +31,6 @@
             CGPROGRAM
             
             #pragma vertex vert
-            #pragma geometry geom
             #pragma fragment frag
             
             #include "UnityCG.cginc"
@@ -39,40 +38,19 @@
             float4 _OutlineColor;
             float _OutlineWidth;
             
-            struct v2g
+            struct v2f
             {
                 float4 pos : SV_POSITION;
             };
             
-            struct g2f
+            v2f vert(appdata_full i)
             {
-                float4 pos : SV_POSITION;
-            };
-            
-            v2g vert(appdata_full i)
-            {
-                v2g o;
-                o.pos = i.vertex;
+                v2f o;
+                o.pos = UnityObjectToClipPos(i.vertex * (1 + _OutlineWidth));
                 return o;
             }
             
-            [maxvertexcount(3)]
-            void geom(triangle v2g i[3], inout TriangleStream<g2f> o)
-            {
-                g2f v0;
-                v0.pos = UnityObjectToClipPos(i[0].pos.xyz * (1 + _OutlineWidth / length(i[0].pos.xyz)));
-                o.Append(v0);
-                
-                g2f v1;
-                v1.pos = UnityObjectToClipPos(i[1].pos.xyz * (1 + _OutlineWidth / length(i[1].pos.xyz)));
-                o.Append(v1);
-                
-                g2f v2;
-                v2.pos = UnityObjectToClipPos(i[2].pos.xyz * (1 + _OutlineWidth / length(i[2].pos.xyz)));
-                o.Append(v2);
-            }
-            
-            float4 frag(g2f i) : SV_Target
+            float4 frag(v2f i) : SV_Target
             {
                 return _OutlineColor;
             }
