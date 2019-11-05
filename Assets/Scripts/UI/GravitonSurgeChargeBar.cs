@@ -4,11 +4,15 @@ using UnityEngine.UI;
 public class GravitonSurgeChargeBar : MonoBehaviour
 {
 	[Header("References")]
-	public GravitonSurge Surge;
-	public Image Bar;
+	private GravitonSurge _surge;
+	private Image _bar;
 
+	void Start(){
+		_surge = Player.Instance.GetComponentInChildren<GravitonSurge>();
+		_bar = GetComponent<Image>();
+	}
 	private void Update()
 	{
-		Bar.fillAmount = Surge.Charge / Surge.MaxDuration;
+		_bar.fillAmount = _surge.Charge / _surge.MaxDuration;
 	}
 }
