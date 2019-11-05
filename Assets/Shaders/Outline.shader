@@ -8,7 +8,8 @@
         _Metallic ("Metallic", Range(0,1)) = 0.0
 
         _OutlineColor ("Outline Color", Color) = (1,1,1,1)
-        _OutlineWidth ("Outline Width", Range(0.01,10)) = 0.2      
+        [PerRendererData] _OutlineWidth ("Outline Width", Range(0.01,10)) = 0.2
+        [PerRendererData] _OutlineActive ("Outline Active", Range(0,1)) = 1
     }
     SubShader
     {
@@ -37,6 +38,7 @@
             
             float4 _OutlineColor;
             float _OutlineWidth;
+            float _OutlineActive;
             
             struct v2f
             {
@@ -52,6 +54,7 @@
             
             float4 frag(v2f i) : SV_Target
             {
+                clip(_OutlineActive - 0.5);
                 return _OutlineColor;
             }
             
