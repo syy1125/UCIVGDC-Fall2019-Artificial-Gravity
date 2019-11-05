@@ -59,8 +59,6 @@
             }
             
             ENDCG
-            
-            Blend SrcAlpha DstAlpha
         }
     
         CGPROGRAM
