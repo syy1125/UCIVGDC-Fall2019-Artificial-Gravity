@@ -45,7 +45,10 @@
           <e p="ScriptableObjects" t="Include">
             <e p="LayerMasks.cs" t="Include" />
           </e>
-          <e p="ShaderLabCamera.cs" t="Include" />
+          <e p="ShaderLab" t="Include">
+            <e p="ShaderLabCamera.cs" t="Include" />
+            <e p="ShaderRendererControl.cs" t="Include" />
+          </e>
           <e p="UI" t="Include">
             <e p="DeathScreenController.cs" t="Include" />
             <e p="GravitonSurgeChargeBar.cs" t="Include" />
@@ -64,9 +67,7 @@
       <e p="Library" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
-      <e p="Temp" t="ExcludeRecursive">
-        <e p="bin" t="ExcludeRecursive" />
-      </e>
+      <e p="Temp\bin" t="ExcludeRecursive" />
     </e>
   </component>
 </project>

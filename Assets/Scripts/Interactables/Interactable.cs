@@ -35,6 +35,8 @@ public abstract class Interactable : PuzzleElement
         Inventory = PlayerInventory.Instance;
         DefaultUnlockedHoverText = "Press E to use";
         DefaultLockedHoverText = "I need " + UnlockedByItem;
+        
+        SetGlow(false);
     }
 
     void Update(){
@@ -63,6 +65,18 @@ public abstract class Interactable : PuzzleElement
             }
         }
     }
+
+    public void SetGlow(bool glow)
+    {
+        var r = GetComponent<Renderer>();
+
+        if (r == null) return;
+        
+        var block = new MaterialPropertyBlock();
+        block.SetFloat("_OutlineActive", glow ? 1 : 0);
+        r.SetPropertyBlock(block);
+    }
+    
     public abstract void OnInteract(); //Children decides interaction
     public void DefaultInteract(){
         if(Locked){

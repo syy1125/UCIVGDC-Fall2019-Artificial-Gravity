@@ -14,10 +14,13 @@ public class PlayerInteract : MonoBehaviour
     public string InteractKey = "e";
 
     public static string HoverText=""; //This will be read by a Text UI object
+
+    private Interactable _lastInteractable;
+    
     void Awake()
     {
-        
         HeadTransform = GetComponentInChildren<Camera>().transform;
+        _lastInteractable = null;
     }
 
     // Update is called once per frame
@@ -32,6 +35,18 @@ public class PlayerInteract : MonoBehaviour
 
         if(Physics.Raycast(HeadTransform.position,HeadTransform.forward,out hit,InteractDistance)){
             Interactable interactable = hit.collider.gameObject.GetComponent<Interactable>();
+            
+            // Transfer who's glowing if applicable
+            if (interactable != _lastInteractable)
+            {
+                if (_lastInteractable != null)
+                {
+                    _lastInteractable.SetGlow(false);
+                }
+                _lastInteractable = interactable;
+                interactable.SetGlow(true);
+            }
+            
             if(interactable != null){
                 if(Player.KeyDown(InteractKey)){
                     interactable.OnInteract();
@@ -42,6 +57,13 @@ public class PlayerInteract : MonoBehaviour
             }
         } else {
             HoverText = "";
+            
+            // Turn off glow if applicable
+            if (_lastInteractable != null)
+            {
+                _lastInteractable.SetGlow(false);
+                _lastInteractable = null;
+            }
         }
     }
     void OnDrawGizmos(){
