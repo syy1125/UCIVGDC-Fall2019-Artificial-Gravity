@@ -70,4 +70,14 @@ public class Player : MonoBehaviour
             return false;
         return Input.GetKey(key);
     }
+    public static bool KeyUp(string key){
+        if(!AllowInput())
+            return false;
+        return Input.GetKeyUp(key);
+    }
+    public static bool KeyUp(KeyCode key){
+        if(!AllowInput())
+            return false;
+        return Input.GetKeyUp(key);
+    }
 }
