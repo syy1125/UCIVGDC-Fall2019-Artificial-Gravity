@@ -68,7 +68,7 @@ public class GravityControl : MonoBehaviour
 			_arrow.SetActive(false);
 		}
 
-		if(Input.GetKeyUp(KeyCode.Mouse0) && newDown != null){
+		if(Input.GetKeyUp(KeyCode.Mouse0) && newDown != null && _leftMouseHeld){
 			_leftMouseHeld = false;
 			if(Player.AllowInput()){
 				//Only do gravity snap if input is currently allowed
