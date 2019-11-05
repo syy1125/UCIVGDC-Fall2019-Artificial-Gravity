@@ -15,6 +15,10 @@ public class GravityControl : MonoBehaviour
 	public LayerMasks Masks;
 
 	private GameObject _arrow;
+	public string CancelGravitySnapKey = "f";
+	public float DurationToActivateGravSnap;
+	private float _gravSnapTimer = 0;
+	private bool _leftMouseHeld = false;
 
 	private void Start()
 	{
@@ -24,36 +28,54 @@ public class GravityControl : MonoBehaviour
 
 	private void Update()
 	{
+		
 		Transform t = Look.transform;
 		
 		Vector3? newDown = t.forward;
-		if (Input.GetAxisRaw("Snap") > 0)
-		{
-			if (Physics.Raycast(t.position, t.forward, out RaycastHit hit, Mathf.Infinity, Masks.GroundMask.value))
-			{
-				_arrow.SetActive(true);
-				_arrow.transform.SetPositionAndRotation(
-					hit.point,
-					Quaternion.LookRotation(-hit.normal)
-				);
-				newDown = -hit.normal;
-			}
-			else
-			{
-				newDown = null;
-			}
+
+		if(Player.KeyDown(KeyCode.Mouse0)){
+			//Mark button as held and begin tracking button held time.
+			_gravSnapTimer = 0;
+			_leftMouseHeld = true;
 		}
-		else
-		{
+		
+
+		if(_leftMouseHeld){
+			if(Player.KeyDown(CancelGravitySnapKey)){
+				//Cancel the gravity snap AND don't track button held time until the key is pressed again
+				_leftMouseHeld = false;
+			} else {
+				_gravSnapTimer += Time.deltaTime;
+				if(_gravSnapTimer >= DurationToActivateGravSnap){
+
+					//Overide newDown = transform.forward if left mouse has been held for long enough
+					if (Physics.Raycast(t.position, t.forward, out RaycastHit hit, Mathf.Infinity, Masks.GroundMask.value))
+					{
+						_arrow.SetActive(true);
+						_arrow.transform.SetPositionAndRotation(
+							hit.point,
+							Quaternion.LookRotation(-hit.normal)
+						);
+						newDown = -hit.normal;
+					}
+					else
+					{
+						newDown = null;
+					}
+				} 
+			}
+		} else {
 			_arrow.SetActive(false);
 		}
 
-		if (Player.KeyDown(KeyCode.Mouse0) && newDown != null)
-		{
-			Gravity.enabled = true;
-			Gravity.Down = newDown.Value;
-		}
-		else if (Player.KeyDown(KeyCode.Mouse1))
+		if(Input.GetKeyUp(KeyCode.Mouse0) && newDown != null){
+			_leftMouseHeld = false;
+			if(Player.AllowInput()){
+				//Only do gravity snap if input is currently allowed
+				Gravity.enabled = true;
+				Gravity.Down = newDown.Value;
+			}
+		} else if (Player.KeyDown(KeyCode.Mouse1))
 		{
 			var input = new Vector3(
 				Input.GetAxisRaw("Horizontal"),
@@ -72,4 +94,5 @@ public class GravityControl : MonoBehaviour
 			}
 		}
 	}
+	
 }
