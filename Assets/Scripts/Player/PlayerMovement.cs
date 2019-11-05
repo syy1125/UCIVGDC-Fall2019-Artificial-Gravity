@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
 	private void Update()
 	{
-		if(Player.Dead || Player.Paused)
+		if(!Player.AllowInput())
 			return;
 		_directionalInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 		if (Grounded)
