@@ -56,6 +56,8 @@
             <e p="InventoryUI.cs" t="Include" />
             <e p="MainMenuController.cs" t="Include" />
             <e p="PauseMenuController.cs" t="Include" />
+            <e p="PopupBox.cs" t="Include" />
+            <e p="PopupController.cs" t="Include" />
             <e p="Transition.cs" t="Include" />
           </e>
         </e>
@@ -67,7 +69,9 @@
       <e p="Library" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
-      <e p="Temp\bin" t="ExcludeRecursive" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
     </e>
   </component>
 </project>

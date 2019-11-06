@@ -44,7 +44,10 @@ public class PlayerInteract : MonoBehaviour
                     _lastInteractable.SetGlow(false);
                 }
                 _lastInteractable = interactable;
-                interactable.SetGlow(true);
+                if (interactable != null)
+                {
+                    interactable.SetGlow(true);
+                }
             }
             
             if(interactable != null){
