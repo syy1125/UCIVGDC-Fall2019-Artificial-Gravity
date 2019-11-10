@@ -1,5 +1,7 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 /// <summary>
 /// Responsible for manipulating the direction of gravity when the player activates the appropriate controls
@@ -7,6 +9,7 @@ using UnityEngine;
 public class GravityControl : MonoBehaviour
 {
 	[Header("References")]
+	public ControlsObject Controls;
 	public PlayerLook Look;
 	public ArtificialGravity Gravity;
 	public GameObject SurfaceSnapArrowPrefab;
@@ -15,73 +18,59 @@ public class GravityControl : MonoBehaviour
 	public LayerMasks Masks;
 
 	private GameObject _arrow;
-	public string CancelGravitySnapKey = "f";
-	public float DurationToActivateGravSnap;
-	private float _gravSnapTimer = 0;
-	private bool _leftMouseHeld = false;
+	private Transform _lookTransform;
+
+	private bool _leftMouseHeld;
+	private Vector3? _newDown;
 
 	private void Start()
 	{
 		_arrow = Instantiate(SurfaceSnapArrowPrefab);
 		_arrow.SetActive(false);
+		_lookTransform = Look.transform;
 	}
 
-	private void Update()
+	private void OnEnable()
 	{
-		
-		Transform t = Look.transform;
-		
-		Vector3? newDown = t.forward;
+		Controls.Gameplay.SetGravity.started += HandleStartSetGravity;
+		Controls.Gameplay.SetGravity.performed += HandlePerformSetGravity;
+		Controls.Gameplay.DirectionalGravity.performed += HandleDirectionalGravity;
+	}
 
-		if(Player.KeyDown(KeyCode.Mouse0)){
-			//Mark button as held and begin tracking button held time.
-			_gravSnapTimer = 0;
-			_leftMouseHeld = true;
-		}
-		
+	private void OnDisable()
+	{
+		Controls.Gameplay.SetGravity.started -= HandleStartSetGravity;
+		Controls.Gameplay.SetGravity.performed -= HandlePerformSetGravity;
+		Controls.Gameplay.DirectionalGravity.performed -= HandleDirectionalGravity;
+	}
 
-		if(_leftMouseHeld){
-			if(Player.KeyDown(CancelGravitySnapKey)){
-				//Cancel the gravity snap AND don't track button held time until the key is pressed again
-				_leftMouseHeld = false;
-			} else {
-				_gravSnapTimer += Time.deltaTime;
-				if(_gravSnapTimer >= DurationToActivateGravSnap){
-
-					//Overide newDown = transform.forward if left mouse has been held for long enough
-					if (Physics.Raycast(t.position, t.forward, out RaycastHit hit, Mathf.Infinity, Masks.GroundMask.value))
-					{
-						_arrow.SetActive(true);
-						_arrow.transform.SetPositionAndRotation(
-							hit.point,
-							Quaternion.LookRotation(-hit.normal)
-						);
-						newDown = -hit.normal;
-					}
-					else
-					{
-						newDown = null;
-					}
-				} 
-			}
-		} else {
-			_arrow.SetActive(false);
-		}
-
-		if(Input.GetKeyUp(KeyCode.Mouse0) && newDown != null && _leftMouseHeld){
-			_leftMouseHeld = false;
-			if(Player.AllowInput()){
-				//Only do gravity snap if input is currently allowed
-				Gravity.enabled = true;
-				Gravity.Down = newDown.Value;
-			}
-		} else if (Player.KeyDown(KeyCode.Mouse1))
+	private void HandleStartSetGravity(InputAction.CallbackContext context)
+	{
+		_leftMouseHeld = true;
+		if (context.interaction is SlowTapInteraction)
 		{
-			var input = new Vector3(
-				Input.GetAxisRaw("Horizontal"),
-				Input.GetAxisRaw("Jump"),
-				Input.GetAxisRaw("Vertical")
-			);
+			_arrow.SetActive(true);
+		}
+	}
+
+	private void HandlePerformSetGravity(InputAction.CallbackContext context)
+	{
+		if (_leftMouseHeld && _newDown != null)
+		{
+			Gravity.enabled = true;
+			Gravity.Down = _newDown.Value;
+		}
+
+		_leftMouseHeld = false;
+	}
+
+	private void HandleDirectionalGravity(InputAction.CallbackContext context)
+	{
+		if (context.interaction is TapInteraction)
+		{
+			var move = Controls.Gameplay.Movement.ReadValue<Vector2>();
+			var jump = Controls.Gameplay.Jump.ReadValue<float>();
+			var input = new Vector3(move.x, jump, move.y);
 
 			if (input.magnitude <= float.Epsilon)
 			{
@@ -90,9 +79,38 @@ public class GravityControl : MonoBehaviour
 			else
 			{
 				Gravity.enabled = true;
-				Gravity.Down = t.TransformVector(input);
+				Gravity.Down = _lookTransform.TransformVector(input);
 			}
 		}
 	}
-	
+
+	private void Update()
+	{
+		_newDown = _lookTransform.forward;
+
+		if (_leftMouseHeld && _arrow.activeSelf)
+		{
+			// Override newDown = transform.forward if left mouse has been held for long enough
+			if (Physics.Raycast(
+				_lookTransform.position, _lookTransform.forward, out RaycastHit hit, Mathf.Infinity,
+				Masks.GroundMask.value
+			))
+			{
+				_arrow.SetActive(true);
+				_arrow.transform.SetPositionAndRotation(
+					hit.point,
+					Quaternion.LookRotation(-hit.normal)
+				);
+				_newDown = -hit.normal;
+			}
+			else
+			{
+				_newDown = null;
+			}
+		}
+		else
+		{
+			_arrow.SetActive(false);
+		}
+	}
 }

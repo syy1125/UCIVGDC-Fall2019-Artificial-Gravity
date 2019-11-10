@@ -8,6 +8,10 @@
       <e p="ArtificialGravity.sln" t="IncludeFlat" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Input" t="Include">
+          <e p="ControlsObject.cs" t="Include" />
+          <e p="ControlsWrapper.cs" t="Include" />
+        </e>
         <e p="Scripts" t="Include">
           <e p="AirResistance.cs" t="Include" />
           <e p="ArtificialGravity.cs" t="Include" />

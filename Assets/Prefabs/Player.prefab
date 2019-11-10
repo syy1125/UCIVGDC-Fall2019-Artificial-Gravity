@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81bc374468c29749a479354fd86f6fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Controls: {fileID: 11400000, guid: 675384c69f6a3ff4f9f6eb7fd49b2424, type: 2}
   Look: {fileID: 963194229}
   Gravity: {fileID: 2997386851078735336}
   SurfaceSnapArrowPrefab: {fileID: 2616467214416537986, guid: bc324cef8ac261641a864f4ec5b0290f,
@@ -61,6 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901de942012e81f41b5be963bb290375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Controls: {fileID: 11400000, guid: 675384c69f6a3ff4f9f6eb7fd49b2424, type: 2}
   Gravity: {fileID: 2997386851078735336}
   Multiplier: 10
   MaxDuration: 2
@@ -161,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec3211acfc5706b4eb1c434ae9b12662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Controls: {fileID: 11400000, guid: 675384c69f6a3ff4f9f6eb7fd49b2424, type: 2}
   Gravity: {fileID: 2997386851078735336}
   Collider: {fileID: 8190977108810092170}
   WalkSpeed: 2
@@ -214,6 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f674943713bee74c88b8a54ddaee640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Controls: {fileID: 11400000, guid: 675384c69f6a3ff4f9f6eb7fd49b2424, type: 2}
 --- !u!114 &2776591512339785031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,6 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58a24203521aa6e47985be9d4b5e9527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Controls: {fileID: 11400000, guid: 675384c69f6a3ff4f9f6eb7fd49b2424, type: 2}
   MinY: -90
   MaxY: 90
 --- !u!114 &8984103692716851939
@@ -338,5 +343,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a880755f1148ffd4ea47e9d4ef7ae95a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Controls: {fileID: 11400000, guid: 675384c69f6a3ff4f9f6eb7fd49b2424, type: 2}
   InteractDistance: 2.5
   InteractKey: e

@@ -4,8 +4,11 @@ using UnityEngine;
 public class PlayerLook : MonoBehaviour
 {
 	private Transform _parent;
-	private Transform Parent => _parent == null ? _parent = transform.parent : _parent;
+	
+	[Header("References")]
+	public ControlsObject Controls;
 
+	[Header("Config")]
 	public float MinY;
 	public float MaxY;
 
@@ -17,31 +20,48 @@ public class PlayerLook : MonoBehaviour
 		set => _angleY = Mathf.Clamp(value, MinY, MaxY);
 	}
 
+	private bool _controlsActive;
 
-	private void OnEnable()
+	private void Start()
+	{
+		_parent = transform.parent;
+	}
+
+	private void Update()
+	{
+		if (Controls.Gameplay.enabled)
+		{
+			if (!_controlsActive)
+			{
+				LockCursor();
+				_controlsActive = true;
+			}
+		}
+		else if (_controlsActive)
+		{
+			UnlockCursor();
+			_controlsActive = false;
+		}
+		
+		var input = Controls.Gameplay.Look.ReadValue<Vector2>();
+		AngleY += input.y;
+		_parent.Rotate(Vector3.up, input.x);
+	}
+
+	private static void LockCursor()
 	{
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
 	}
 
-	private void Update()
+	private static void UnlockCursor()
 	{
-		if(Player.AllowInput())
-		{
-			AngleY += Input.GetAxisRaw("Mouse Y");
-			Parent.Rotate(Vector3.up, Input.GetAxisRaw("Mouse X"));
-		}
-		
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
 	}
 	
 	private void LateUpdate()
 	{
 		transform.localRotation = Quaternion.Euler(-AngleY, 0f, 0f);
-	}
-
-	private void OnDisable()
-	{
-		Cursor.lockState = CursorLockMode.None;
-		Cursor.visible = true;
 	}
 }

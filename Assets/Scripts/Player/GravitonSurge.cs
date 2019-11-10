@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 
 public class GravitonSurge : MonoBehaviour
 {
 	[Header("References")]
+	public ControlsObject Controls;
 	public ArtificialGravity Gravity;
 
 	[Header("Config")]
@@ -25,7 +27,7 @@ public class GravitonSurge : MonoBehaviour
 
 	private void Update()
 	{
-		if (Player.Key(KeyCode.X) && Charge > 0)
+		if (Controls.Gameplay.GravitonSurge.ReadValue<float>() > float.Epsilon && Charge > 0)
 		{
 			Gravity.Gravity = _surgeGravity;
 			Charge -= Time.deltaTime;

@@ -5,76 +5,93 @@ using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour
 {
-    /*
-        This module raycasts from the player camera and calls OnInteract()
-        on any object tagged as "Interactable"
-     */
-    private Transform HeadTransform;
-    public float InteractDistance = 2.5f;
-    public string InteractKey = "e";
+	/*
+	    This module raycasts from the player camera and calls OnInteract()
+	    on any object tagged as "Interactable"
+	 */
 
-    public static string HoverText=""; //This will be read by a Text UI object
+	[Header("References")]
+	public ControlsObject Controls;
 
-    private Interactable _lastInteractable;
-    
-    void Awake()
-    {
-        HeadTransform = GetComponentInChildren<Camera>().transform;
-        _lastInteractable = null;
-    }
+	[Header("Config")]
+	private Transform _headTransform;
+	public float InteractDistance = 2.5f;
+	public string InteractKey = "e";
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(Player.Paused)
-            return;
-        rayCast();
-    }
-    public void rayCast(){
-        RaycastHit hit;
+	public static string HoverText = ""; //This will be read by a Text UI object
 
-        if(Physics.Raycast(HeadTransform.position,HeadTransform.forward,out hit,InteractDistance)){
-            Interactable interactable = hit.collider.gameObject.GetComponent<Interactable>();
-            
-            // Transfer who's glowing if applicable
-            if (interactable != _lastInteractable)
-            {
-                if (_lastInteractable != null)
-                {
-                    _lastInteractable.SetGlow(false);
-                }
-                _lastInteractable = interactable;
-                if (interactable != null)
-                {
-                    interactable.SetGlow(true);
-                }
-            }
-            
-            if(interactable != null){
-                if(Player.KeyDown(InteractKey)){
-                    interactable.OnInteract();
-                } 
-                HoverText = interactable.HoverText();
-            } else {
-                HoverText = "";
-            }
-        } else {
-            HoverText = "";
-            
-            // Turn off glow if applicable
-            if (_lastInteractable != null)
-            {
-                _lastInteractable.SetGlow(false);
-                _lastInteractable = null;
-            }
-        }
-    }
-    void OnDrawGizmos(){
-        if(!HeadTransform)
-            return;
-        Gizmos.color = Color.green;
+	private Interactable _focusedInteractable;
 
-        Gizmos.DrawWireSphere(HeadTransform.position+HeadTransform.forward*InteractDistance,.05f);
-        Gizmos.DrawLine(HeadTransform.position,HeadTransform.position+HeadTransform.forward*InteractDistance);
-    }
+	public Interactable FocusedInteractable
+	{
+		get => _focusedInteractable;
+		set
+		{
+			if (_focusedInteractable == value) return;
+			
+			if (_focusedInteractable != null)
+			{
+				_focusedInteractable.SetGlow(false);
+			}
+
+			_focusedInteractable = value;
+			
+			if (_focusedInteractable != null)
+			{
+				_focusedInteractable.SetGlow(true);
+			}
+		}
+	}
+
+	void Awake()
+	{
+		_headTransform = GetComponentInChildren<Camera>().transform;
+		_focusedInteractable = null;
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+		RayCast();
+	}
+
+	private void RayCast()
+	{
+		if (Physics.Raycast(_headTransform.position, _headTransform.forward, out RaycastHit hit, InteractDistance))
+		{
+			FocusedInteractable = hit.collider.gameObject.GetComponent<Interactable>();
+
+			if (FocusedInteractable != null)
+			{
+				if (Controls.Gameplay.Interact.triggered)
+				{
+					FocusedInteractable.OnInteract();
+				}
+
+				HoverText = FocusedInteractable.HoverText();
+			}
+			else
+			{
+				HoverText = "";
+			}
+		}
+		else
+		{
+			HoverText = "";
+			FocusedInteractable = null;
+		}
+	}
+
+	void OnDrawGizmos()
+	{
+		if (!_headTransform)
+		{
+			return;
+		}
+
+		Gizmos.color = Color.green;
+
+		Gizmos.DrawWireSphere(_headTransform.position + _headTransform.forward * InteractDistance, .05f);
+		Gizmos.DrawLine(_headTransform.position, _headTransform.position + _headTransform.forward * InteractDistance);
+	}
 }

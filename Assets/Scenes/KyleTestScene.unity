@@ -491,7 +491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 1
-  DismissKey: e
+  Controls: {fileID: 11400000, guid: 675384c69f6a3ff4f9f6eb7fd49b2424, type: 2}
   TriggeredBy: {fileID: 0}
   TriggerNextPopup: {fileID: 1060578083}
 --- !u!222 &173885079
@@ -1673,7 +1673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
-  DismissKey: e
+  Controls: {fileID: 11400000, guid: 675384c69f6a3ff4f9f6eb7fd49b2424, type: 2}
   TriggeredBy: {fileID: 0}
   TriggerNextPopup: {fileID: 0}
 --- !u!225 &1060578084
@@ -4538,6 +4538,14 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1242710483, guid: acfcf614c03a38841ba7f763063dd99a, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 391139365, guid: acfcf614c03a38841ba7f763063dd99a, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acfcf614c03a38841ba7f763063dd99a, type: 3}

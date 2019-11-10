@@ -1,5 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
 	private Rigidbody _body;
 
 	[Header("References")]
+	[SerializeField]
+	public ControlsObject Controls;
 	public ArtificialGravity Gravity;
 	public CapsuleCollider Collider;
 
@@ -46,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
 					+ "This may cause wonky behaviour with ground detection."
 				);
 			}
+
 			return Physics.CapsuleCast(
 				point1, point2,
 				Collider.radius * (scale.x / 3 + scale.y / 3 + scale.z / 3),
@@ -62,32 +65,29 @@ public class PlayerMovement : MonoBehaviour
 		_body = GetComponent<Rigidbody>();
 	}
 
-	private void Update()
-	{
-		if(!Player.AllowInput())
-			return;
-		_directionalInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-		if (Grounded)
-		{
-			_directionalInput *= WalkSpeed;
-			_body.velocity = _transform.TransformDirection(
-				_directionalInput.x, _transform.InverseTransformDirection(_body.velocity).y, _directionalInput.z
-			);
-		}
-	}
-
 	private void FixedUpdate()
 	{
-		if (Grounded && Time.time > _lastJump + JumpCooldown && Input.GetAxisRaw("Jump") > 0)
+		var input = Controls.Gameplay.Movement.ReadValue<Vector2>();
+		var jump = Controls.Gameplay.Jump.ReadValue<float>();
+
+		if (Grounded)
 		{
-			_body.AddForce(transform.up * JumpStrength, ForceMode.VelocityChange);
-			_lastJump = Time.time;
+			input *= WalkSpeed;
+			Vector3 localVelocity = _transform.InverseTransformVector(_body.velocity);
+			localVelocity.x = input.x;
+			localVelocity.z = input.y;
+			_body.velocity = _transform.TransformVector(localVelocity);
+
+			if (Time.time > _lastJump + JumpCooldown && jump > 0)
+			{
+				_body.AddForce(_transform.up * JumpStrength, ForceMode.VelocityChange);
+				_lastJump = Time.time;
+			}
 		}
-		
-		if(!Grounded)
+		else
 		{
-			_directionalInput *= AirborneForce;
-			_body.AddForce(_transform.TransformDirection(_directionalInput), ForceMode.Acceleration);
+			input *= AirborneForce;
+			_body.AddForce(_transform.TransformVector(input.x, jump, input.y), ForceMode.Acceleration);
 		}
 	}
 

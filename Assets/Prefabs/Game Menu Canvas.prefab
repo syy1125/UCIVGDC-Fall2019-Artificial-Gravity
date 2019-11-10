@@ -831,6 +831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83f00023babd73f42a55318e2534ab9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Controls: {fileID: 11400000, guid: 675384c69f6a3ff4f9f6eb7fd49b2424, type: 2}
   PauseKey: escape
   DefaultButton: {fileID: 9003408452444654961}
 --- !u!1 &9003408453978497524
