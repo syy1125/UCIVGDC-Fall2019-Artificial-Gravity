@@ -17,6 +17,7 @@
           <e p="ArtificialGravity.cs" t="Include" />
           <e p="BreakableWall.cs" t="Include" />
           <e p="BreakableWallTrigger.cs" t="Include" />
+          <e p="DetachOnStart.cs" t="Include" />
           <e p="ExplosionTest.cs" t="Include" />
           <e p="Interactables" t="Include">
             <e p="Collectible.cs" t="Include" />

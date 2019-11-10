@@ -34,6 +34,7 @@ public class GravityControl : MonoBehaviour
 	{
 		Controls.Gameplay.SetGravity.started += HandleStartSetGravity;
 		Controls.Gameplay.SetGravity.performed += HandlePerformSetGravity;
+		Controls.Gameplay.CancelGravity.performed += HandleCancelGravity;
 		Controls.Gameplay.DirectionalGravity.performed += HandleDirectionalGravity;
 	}
 
@@ -41,6 +42,7 @@ public class GravityControl : MonoBehaviour
 	{
 		Controls.Gameplay.SetGravity.started -= HandleStartSetGravity;
 		Controls.Gameplay.SetGravity.performed -= HandlePerformSetGravity;
+		Controls.Gameplay.CancelGravity.performed -= HandleCancelGravity;
 		Controls.Gameplay.DirectionalGravity.performed -= HandleDirectionalGravity;
 	}
 
@@ -61,6 +63,11 @@ public class GravityControl : MonoBehaviour
 			Gravity.Down = _newDown.Value;
 		}
 
+		_leftMouseHeld = false;
+	}
+
+	private void HandleCancelGravity(InputAction.CallbackContext context)
+	{
 		_leftMouseHeld = false;
 	}
 
