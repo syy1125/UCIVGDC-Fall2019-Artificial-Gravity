@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91650c4c8fb4e764fae4f57600f7157a, type: 3}
+  m_Name: Laser Holder Mesh Data
+  m_EditorClassIdentifier: 
+  Data:
+  - Mesh: {fileID: 5883719506958768894, guid: b8260a31bb2741841adf5575d7260e19, type: 3}
+    VertexIndices: 7f010000600100009d010000bc010000db010000
+  - Mesh: {fileID: 5928026678239321753, guid: b8260a31bb2741841adf5575d7260e19, type: 3}
+    VertexIndices: 7e0100005f0100009e010000bd010000dc010000

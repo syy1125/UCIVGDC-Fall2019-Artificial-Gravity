@@ -16,7 +16,6 @@ public class PlayerInteract : MonoBehaviour
 	[Header("Config")]
 	private Transform _headTransform;
 	public float InteractDistance = 2.5f;
-	public string InteractKey = "e";
 
 	public static string HoverText = ""; //This will be read by a Text UI object
 

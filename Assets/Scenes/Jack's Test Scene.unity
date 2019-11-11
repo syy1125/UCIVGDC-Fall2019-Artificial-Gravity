@@ -2369,6 +2369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a880755f1148ffd4ea47e9d4ef7ae95a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Controls: {fileID: 0}
   InteractDistance: 2.5
   InteractKey: 101
 --- !u!1 &1941521176
