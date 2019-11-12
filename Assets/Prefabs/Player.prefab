@@ -101,7 +101,7 @@ Transform:
   m_GameObject: {fileID: 1618270098096371965}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 7036981791066173949}
   - {fileID: 1209858838}
@@ -123,7 +123,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 1
+  m_CollisionDetection: 3
 --- !u!136 &8190977108810092170
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -202,7 +202,7 @@ MonoBehaviour:
   Gravity: {fileID: 2997386851078735336}
   Movement: {fileID: 507347096044203682}
   Look: {fileID: 963194229}
-  RotationRate: 135
+  RotationRate: 280
   Masks: {fileID: 11400000, guid: 6debccdb348f5be4a9ccef55d27f6e60, type: 2}
   DisableOrientRadius: 4
 --- !u!114 &8030041707638804696
@@ -503,4 +503,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Controls: {fileID: 11400000, guid: 675384c69f6a3ff4f9f6eb7fd49b2424, type: 2}
   InteractDistance: 2.5
-  InteractKey: e

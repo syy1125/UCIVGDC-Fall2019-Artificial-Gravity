@@ -44,10 +44,12 @@ public class PlayerLook : MonoBehaviour
 		}
 		
 		var input = Controls.Gameplay.Look.ReadValue<Vector2>();
+		RotateView(input);
+	}
+	public void RotateView(Vector2 input){
 		AngleY += input.y;
 		_parent.Rotate(Vector3.up, input.x);
 	}
-
 	private static void LockCursor()
 	{
 		Cursor.lockState = CursorLockMode.Locked;
