@@ -401,6 +401,9 @@ GameObject:
   - component: {fileID: 4700307021423702614}
   - component: {fileID: 963194229}
   - component: {fileID: 8984103692716851939}
+  - component: {fileID: 2047248319}
+  - component: {fileID: 2047248320}
+  - component: {fileID: 2047248318}
   m_Layer: 0
   m_Name: Player Camera
   m_TagString: MainCamera
@@ -503,3 +506,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Controls: {fileID: 11400000, guid: 675384c69f6a3ff4f9f6eb7fd49b2424, type: 2}
   InteractDistance: 2.5
+--- !u!54 &2047248319
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6294477689393369683}
+  serializedVersion: 2
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 3
+--- !u!135 &2047248320
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6294477689393369683}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!138 &2047248318
+FixedJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6294477689393369683}
+  m_ConnectedBody: {fileID: 192895564}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1

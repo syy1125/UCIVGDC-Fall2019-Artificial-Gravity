@@ -14,7 +14,7 @@ public class FlashlightPositionControl : MonoBehaviour
 		_offset = _mainCamera.InverseTransformPoint(_mainCamera.transform.position);
 	}
 
-	private void Update()
+	private void LateUpdate()
 	{
 		Transform t = transform;
 

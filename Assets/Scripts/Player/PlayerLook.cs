@@ -45,6 +45,8 @@ public class PlayerLook : MonoBehaviour
 		
 		var input = Controls.Gameplay.Look.ReadValue<Vector2>();
 		RotateView(input);
+		transform.localRotation = Quaternion.Euler(-AngleY, 0f, 0f);
+
 	}
 	public void RotateView(Vector2 input){
 		AngleY += input.y;
@@ -62,8 +64,5 @@ public class PlayerLook : MonoBehaviour
 		Cursor.visible = true;
 	}
 	
-	private void LateUpdate()
-	{
-		transform.localRotation = Quaternion.Euler(-AngleY, 0f, 0f);
-	}
+	
 }
