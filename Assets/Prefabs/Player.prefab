@@ -166,7 +166,7 @@ MonoBehaviour:
   Controls: {fileID: 11400000, guid: 675384c69f6a3ff4f9f6eb7fd49b2424, type: 2}
   Gravity: {fileID: 2997386851078735336}
   Collider: {fileID: 8190977108810092170}
-  WalkSpeed: 2
+  WalkSpeed: 5
   AirborneForce: 1
   JumpStrength: 5
   JumpCooldown: 0.5
