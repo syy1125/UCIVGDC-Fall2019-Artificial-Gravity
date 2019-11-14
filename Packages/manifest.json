@@ -6,6 +6,8 @@
     "com.unity.ide.rider": "1.1.0",
     "com.unity.ide.vscode": "1.1.2",
     "com.unity.inputsystem": "1.0.0-preview.2",
+    "com.unity.jobs": "0.1.1-preview",
+    "com.unity.memoryprofiler": "0.1.0-preview.8",
     "com.unity.package-manager-ui": "2.2.0",
     "com.unity.test-framework": "1.0.13",
     "com.unity.timeline": "1.1.0",
