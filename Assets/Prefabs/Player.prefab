@@ -492,6 +492,7 @@ MonoBehaviour:
   Controls: {fileID: 11400000, guid: 675384c69f6a3ff4f9f6eb7fd49b2424, type: 2}
   MinY: -90
   MaxY: 90
+  IgnoreReorientationAngle: 90
 --- !u!114 &8984103692716851939
 MonoBehaviour:
   m_ObjectHideFlags: 0
