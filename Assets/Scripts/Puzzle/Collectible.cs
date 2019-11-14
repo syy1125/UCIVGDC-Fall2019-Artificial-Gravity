@@ -29,11 +29,10 @@ public class Collectible : PuzzleElement
     }
 
     void OnTriggerEnter(Collider collider){
-        if(collider.gameObject.CompareTag("Player")){
+        if(collider.gameObject.GetComponent<PlayerInventory>() != null){
             collider.gameObject.GetComponent<PlayerInventory>().AddItem(ItemName);
             ActivateOthers();
             State = 1;
-            
         }
     }
 

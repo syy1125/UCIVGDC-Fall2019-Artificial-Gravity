@@ -11,7 +11,7 @@ public class Door : PuzzleElement
     public float DoorSpeed = 1;
     private float AnimTime = 0;
     
-    void Awake(){
+    void Start(){
         DoorAnimator = gameObject.GetComponent<Animator>();
         if(State==1){
             AnimTime = 1;
@@ -28,10 +28,7 @@ public class Door : PuzzleElement
         
     }
     
-    void Start()
-    {
-        
-    }
+    
 
     // Update is called once per frame
     void Update()
