@@ -21,6 +21,8 @@ public class PlayerLook : MonoBehaviour
 	}
 
 	private bool _controlsActive;
+	[Header("Config")]
+	public float IgnoreReorientationAngle;
 
 	private void Start()
 	{
