@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+using System;
+using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -44,6 +45,12 @@ public class Player : MonoBehaviour
 	// Start is called before the first frame update
 	void Awake()
 	{
+		if (Instance != null && Instance != this)
+		{
+			Destroy(gameObject);
+			return;
+		}
+		
 		Instance = this;
 		Dead = false;
 		Paused = false;
@@ -75,5 +82,13 @@ public class Player : MonoBehaviour
 	private static bool AllowInput()
 	{
 		return !Paused && !Dead && !ActivePopup;
+	}
+
+	private void OnDestroy()
+	{
+		if (Instance == this)
+		{
+			Instance = null;
+		}
 	}
 }
