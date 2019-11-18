@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
 	private static bool _dead;
 	private static bool _paused;
 	private static bool _activePopup;
+
+	public static event Action OnPlayerKilled;
 
 	public static bool Dead
 	{
@@ -63,8 +65,9 @@ public class Player : MonoBehaviour
 	{
 		Dead = true;
 		var playerCamera = GetComponentInChildren<Camera>();
-		playerCamera.transform.SetParent(null);
+		playerCamera.transform.SetParent(null, true);
 		gameObject.SetActive(false);
+		OnPlayerKilled?.Invoke();
 	}
 
 	private static void UpdateControlActive()
