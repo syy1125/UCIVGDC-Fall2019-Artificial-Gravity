@@ -27,6 +27,9 @@ public class PlayerMovement : MonoBehaviour
 
 	private Vector3 _directionalInput;
 
+	private AudioSource _source;
+	public AudioClip FootstepSound;
+
 	public bool Grounded
 	{
 		get
@@ -63,8 +66,18 @@ public class PlayerMovement : MonoBehaviour
 	{
 		_transform = transform;
 		_body = GetComponent<Rigidbody>();
+		_source = GetComponent<AudioSource>();
+		_source.loop = true;
+		_source.clip = FootstepSound;
 	}
-
+	private void Update(){
+		if(Grounded && _body.velocity.magnitude > 2){
+			if(!_source.isPlaying)
+				_source.Play();
+		} else {
+			_source.Stop();
+		}
+	}
 	private void FixedUpdate()
 	{
 		var input = Controls.Gameplay.Movement.ReadValue<Vector2>();

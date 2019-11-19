@@ -10,6 +10,8 @@ public class Door : PuzzleElement
     public PuzzleElement TriggeredBy;
     public float DoorSpeed = 1;
     private float AnimTime = 0;
+    private AudioSource _source;
+    public AudioClip OpenSound;
     
     void Start(){
         DoorAnimator = gameObject.GetComponent<Animator>();
@@ -25,7 +27,7 @@ public class Door : PuzzleElement
         } else {
             Debug.LogWarning("Door " + gameObject.name + " has no trigger.");
         }
-        
+        _source = GetComponent<AudioSource>();
     }
     
     
@@ -46,20 +48,29 @@ public class Door : PuzzleElement
     }
     public void OnActivate(){
         if(Activation != ActivationType.OnlyDeactivate){
+            if(State == 0){
+                if(_source != null && OpenSound != null){
+                    _source.PlayOneShot(OpenSound);
+                }
+            }
             State = 1;
+
         }
     }
     public void OnDeactivate(){
         if(Activation != ActivationType.OnlyActivate){
+            if(State == 1){
+                if(_source != null && OpenSound != null){
+                    _source.PlayOneShot(OpenSound);
+                }
+            }
             State = 0;
         }
     }
     public void OnToggle(){
         if(State == 0){
-            State = 1;
             OnActivate();
         } else if(State == 1){
-            State = 0;
             OnDeactivate();
         }
     }

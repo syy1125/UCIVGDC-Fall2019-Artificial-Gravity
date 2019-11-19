@@ -435,6 +435,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 103443880}
   m_CullTransparentMesh: 0
+--- !u!114 &159482478 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2988298233965183529, guid: e4501277c6cb61d49bbf2ea41a3385e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1016225130402977443}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fb79e869cc1f7240b855984f3ac8f62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &173885076
 GameObject:
   m_ObjectHideFlags: 0
@@ -2671,6 +2683,7 @@ MonoBehaviour:
   RepeatDelay: 0.3
   MaterialColor: {r: 1, g: 1, b: 1, a: 1}
   OutlineColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  InteractSound: {fileID: 0}
 --- !u!1 &1376479220
 GameObject:
   m_ObjectHideFlags: 0
@@ -3711,7 +3724,7 @@ PrefabInstance:
         type: 3}
       propertyPath: TriggeredBy
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 159482478}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6c811ccd22ac20408902f8afb4ece06, type: 3}
 --- !u!1 &1885649759
@@ -4489,11 +4502,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2988298233965183528, guid: e4501277c6cb61d49bbf2ea41a3385e2,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4501277c6cb61d49bbf2ea41a3385e2, type: 3}
 --- !u!1001 &2217166449781882403
@@ -5008,17 +5016,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Keycard Spawner
       objectReference: {fileID: 0}
-    - target: {fileID: 6919160641098722052, guid: d4084e71819080649bcb0d0b64bc52b3,
-        type: 3}
-      propertyPath: ItemName
-      value: Blue Keycard
-      objectReference: {fileID: 0}
-    - target: {fileID: 6919160641098722052, guid: d4084e71819080649bcb0d0b64bc52b3,
-        type: 3}
-      propertyPath: ItemSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 99340cb06cae298419c7a0cfec415cbe,
-        type: 3}
     - target: {fileID: 6919160642426173525, guid: d4084e71819080649bcb0d0b64bc52b3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5269,6 +5266,7 @@ MonoBehaviour:
   Activation: 0
   TriggeredBy: {fileID: 0}
   DoorSpeed: 1
+  OpenSound: {fileID: 0}
 --- !u!1 &8309354416483577166
 GameObject:
   m_ObjectHideFlags: 0

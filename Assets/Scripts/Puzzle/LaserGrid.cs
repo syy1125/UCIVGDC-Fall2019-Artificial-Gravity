@@ -7,6 +7,7 @@ public class LaserGrid : PuzzleElement
 	private Collider LaserCollider;
 	public GameObject LaserParent;
 	private Light[] Lights;
+	private AudioSource _source;
 
 	void Awake()
 	{
@@ -17,6 +18,11 @@ public class LaserGrid : PuzzleElement
 			DisabledBy.ActivateEvent += new PuzzleElementEventHandler(OnActivate);
 			DisabledBy.DeactivateEvent += new PuzzleElementEventHandler(OnDeactivate);
 			DisabledBy.ToggleEvent += new PuzzleElementEventHandler(OnToggle);
+		}
+		_source = GetComponent<AudioSource>();
+		_source.spatialize = true;
+		if(State == 1){
+			_source.Play();
 		}
 	}
 
@@ -45,6 +51,7 @@ public class LaserGrid : PuzzleElement
 		if (Activation != ActivationType.OnlyDeactivate)
 		{
 			State = 0;
+			_source.Play();
 		}
 	}
 
@@ -53,6 +60,7 @@ public class LaserGrid : PuzzleElement
 		if (Activation != ActivationType.OnlyActivate)
 		{
 			State = 1;
+			_source.Stop();
 		}
 	}
 
@@ -61,10 +69,12 @@ public class LaserGrid : PuzzleElement
 		if (State == 0)
 		{
 			State = 1;
+			_source.Play();
 		}
 		else if (State == 1)
 		{
 			State = 0;
+			_source.Stop();
 		}
 	}
 }

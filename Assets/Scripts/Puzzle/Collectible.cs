@@ -10,10 +10,13 @@ public class Collectible : PuzzleElement
 
     public string ItemName;
     public Sprite ItemSprite;
+    private AudioSource _source;
+    public AudioClip PickupSound;
     void Awake()
     {
         MyCollider = gameObject.GetComponent<Collider>();
         MyRenderer = gameObject.GetComponent<MeshRenderer>();
+        _source = GetComponent<AudioSource>();
     }
     void Start(){
         PlayerInventory.Instance.AddSprite(ItemName,ItemSprite);
@@ -33,6 +36,9 @@ public class Collectible : PuzzleElement
             collider.gameObject.GetComponent<PlayerInventory>().AddItem(ItemName);
             ActivateOthers();
             State = 1;
+            if(_source != null && PickupSound != null){
+                _source.PlayOneShot(PickupSound);
+            }
         }
     }
 
