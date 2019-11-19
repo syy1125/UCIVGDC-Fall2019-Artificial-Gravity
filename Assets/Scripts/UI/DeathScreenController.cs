@@ -5,39 +5,78 @@ using UnityEngine.UI;
 
 public class DeathScreenController : MonoBehaviour
 {
+	// https://docs.unity3d.com/ScriptReference/AsyncOperation-progress.html
+	private const float SCENE_ACTIVATION_READY_PROGRESS_THRESHOLD = 0.9f;
+
 	[Header("References")]
 	public Button RespawnButton;
 
 	[Header("Config")]
 	public float FadeTime;
 
-	private AsyncOperation _respawnOp;
-	
-	private IEnumerator Start()
+	private void OnEnable()
+	{
+		Player.OnPlayerKilled += HandlePlayerKilled;
+	}
+
+	private void OnDisable()
+	{
+		Player.OnPlayerKilled -= HandlePlayerKilled;
+	}
+
+	private void HandlePlayerKilled()
+	{
+		StartCoroutine(DoHandlePlayerKilled());
+	}
+
+	private IEnumerator DoHandlePlayerKilled()
 	{
 		yield return new WaitUntil(() => Player.Dead);
 
 		var group = GetComponent<CanvasGroup>();
-		group.interactable = true;
 		group.blocksRaycasts = true;
 
-		_respawnOp = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
-		_respawnOp.allowSceneActivation = false;
-		RespawnButton.onClick.AddListener(Respawn);
-		
+		AsyncOperation loadOp = SceneManager.LoadSceneAsync(
+			SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Additive
+		);
+		loadOp.allowSceneActivation = false;
+
 		float startTime = Time.time;
 		while (Time.time - startTime < FadeTime)
 		{
 			group.alpha = (Time.time - startTime) / FadeTime;
 			yield return null;
 		}
+
 		group.alpha = 1;
 
-		RespawnButton.gameObject.SetActive(true);
-	}
+		yield return new WaitUntil(() => loadOp.progress >= SCENE_ACTIVATION_READY_PROGRESS_THRESHOLD);
 
-	private void Respawn()
-	{
-		_respawnOp.allowSceneActivation = true;
+		foreach (GameObject root in SceneManager.GetActiveScene().GetRootGameObjects())
+		{
+			Destroy(root);
+		}
+
+		group.interactable = true;
+		RespawnButton.onClick.AddListener(Respawn);
+
+		void Respawn()
+		{
+			RespawnButton.onClick.RemoveListener(Respawn);
+
+			SceneManager.sceneLoaded += SwitchActiveScene;
+			loadOp.allowSceneActivation = true;
+			SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+
+			group.interactable = false;
+			group.blocksRaycasts = false;
+			group.alpha = 0;
+		}
+
+		void SwitchActiveScene(Scene scene, LoadSceneMode mode)
+		{
+			SceneManager.sceneLoaded -= SwitchActiveScene;
+			SceneManager.SetActiveScene(scene);
+		}
 	}
 }
