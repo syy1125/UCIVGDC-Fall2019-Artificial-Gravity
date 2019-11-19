@@ -44,6 +44,6 @@ public class ArtificialGravity : MonoBehaviour
 	private void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.blue;
-		Gizmos.DrawRay(transform.position, Down);
+		Gizmos.DrawRay(transform.position, EffectiveDown);
 	}
 }
