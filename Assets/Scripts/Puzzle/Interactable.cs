@@ -30,13 +30,23 @@ public abstract class Interactable : PuzzleElement
     public float RepeatDelay = 0.3f;  //object can only be interacted with every 0.3 seconds
     private string DefaultUnlockedHoverText;
     private string DefaultLockedHoverText;
+    public Color MaterialColor = Color.white;
+    public Color OutlineColor = Color.yellow;
 
-    void Start(){
+    public void Start(){
         Inventory = PlayerInventory.Instance;
         DefaultUnlockedHoverText = "Press E to use";
         DefaultLockedHoverText = "I need " + UnlockedByItem;
         
         SetGlow(false);
+        if(GetComponent<Renderer>() != null){
+            Material material = new Material(Shader.Find("Custom/Outline"));
+            material.SetColor("_Color", MaterialColor);
+            material.SetColor("_OutlineColor",OutlineColor);
+
+            GetComponent<Renderer>().material = material;
+        }
+        
     }
 
     void Update(){
