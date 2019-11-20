@@ -19,7 +19,7 @@ public class Collectible : PuzzleElement
         _source = GetComponent<AudioSource>();
     }
     void Start(){
-        PlayerInventory.Instance.AddSprite(ItemName,ItemSprite);
+        PlayerInventory.AddSprite(ItemName,ItemSprite);
     }
 
     // Update is called once per frame

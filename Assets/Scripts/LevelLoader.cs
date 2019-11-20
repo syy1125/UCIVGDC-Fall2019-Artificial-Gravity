@@ -16,8 +16,9 @@ public class LevelLoader : MonoBehaviour
 	private IEnumerator Start()
 	{
 		yield return new WaitUntil(
-			() => PlayerInventory.Instance != null
-			      && LoadTriggers.All(trigger => PlayerInventory.Instance.HasItem(trigger))
+			() => Player.Instance != null &&
+			      Player.Instance.Inventory != null &&
+			      LoadTriggers.All(trigger => Player.Instance.Inventory.HasItem(trigger))
 		);
 
 		AsyncOperation loadOp = SceneManager.LoadSceneAsync(NextLevel, LoadSceneMode.Additive);
@@ -48,12 +49,13 @@ public class LevelLoader : MonoBehaviour
 		void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
 		{
 			if (scene.name != NextLevel) return;
-			
+
 			SceneManager.sceneLoaded -= HandleSceneLoaded;
 
 			if (cancelled)
 			{
 				SceneManager.UnloadSceneAsync(scene);
+				StartCoroutine(Start());
 			}
 			else
 			{

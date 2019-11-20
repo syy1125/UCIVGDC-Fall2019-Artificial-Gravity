@@ -6,13 +6,12 @@ using UnityEngine.UI;
 public class InventoryUI : MonoBehaviour
 {
     // Start is called before the first frame update
-    private PlayerInventory Inventory;
+    private PlayerInventory Inventory => Player.Instance == null ? null : Player.Instance.Inventory;
     private Image[] InventorySlots;
     public Sprite EmptySprite;
     
     void Start()
     {
-        Inventory = PlayerInventory.Instance;
         InventorySlots = GetChildren();
     }
 

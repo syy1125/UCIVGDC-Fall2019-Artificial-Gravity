@@ -4,9 +4,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 	public static Player Instance;
-	private static PlayerLook _look;
 	public ControlsObject Controls;
 	public EventBus DeathEvent;
+	
+	private PlayerLook _look;
+
+	public PlayerInventory Inventory { get; private set; }
 
 	private static bool _dead;
 	private static bool _paused;
@@ -58,6 +61,7 @@ public class Player : MonoBehaviour
 		ActivePopup = false;
 
 		_look = GetComponentInChildren<PlayerLook>();
+		Inventory = GetComponent<PlayerInventory>();
 	}
 
 	public void KillPlayer()

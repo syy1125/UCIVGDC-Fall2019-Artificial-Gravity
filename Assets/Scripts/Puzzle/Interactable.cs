@@ -26,7 +26,7 @@ public abstract class Interactable : PuzzleElement
     protected float RepeatTimer = 0;
     protected bool FirstUsage = true;
     
-    private PlayerInventory Inventory;
+    private PlayerInventory Inventory => Player.Instance == null ? null : Player.Instance.Inventory;
     public EventBus SendTrigger; // Trigger this when interaction succeeds
     
     public float RepeatDelay = 0.3f;  //object can only be interacted with every 0.3 seconds
@@ -36,7 +36,6 @@ public abstract class Interactable : PuzzleElement
     public Color OutlineColor = Color.yellow;
 
     public void Start(){
-        Inventory = PlayerInventory.Instance;
         DefaultUnlockedHoverText = "Press E to use";
         DefaultLockedHoverText = "I need " + UnlockedByItem;
 
