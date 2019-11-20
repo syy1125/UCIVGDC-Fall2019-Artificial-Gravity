@@ -6,12 +6,11 @@ public class Player : MonoBehaviour
 	public static Player Instance;
 	private static PlayerLook _look;
 	public ControlsObject Controls;
+	public EventBus DeathEvent;
 
 	private static bool _dead;
 	private static bool _paused;
 	private static bool _activePopup;
-
-	public static event Action OnPlayerKilled;
 
 	public static bool Dead
 	{
@@ -67,7 +66,7 @@ public class Player : MonoBehaviour
 		var playerCamera = GetComponentInChildren<Camera>();
 		playerCamera.transform.SetParent(null, true);
 		gameObject.SetActive(false);
-		OnPlayerKilled?.Invoke();
+		DeathEvent.Invoke();
 	}
 
 	private static void UpdateControlActive()

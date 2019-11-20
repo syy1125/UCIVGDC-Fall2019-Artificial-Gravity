@@ -220,6 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Controls: {fileID: 11400000, guid: 675384c69f6a3ff4f9f6eb7fd49b2424, type: 2}
+  DeathEvent: {fileID: 11400000, guid: b50e535442f3e9f4094afbd83842f912, type: 2}
 --- !u!114 &2776591512339785031
 MonoBehaviour:
   m_ObjectHideFlags: 0

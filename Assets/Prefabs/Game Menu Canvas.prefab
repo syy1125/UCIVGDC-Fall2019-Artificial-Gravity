@@ -1163,6 +1163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RespawnButton: {fileID: 9003408453643853609}
+  PlayerDeathEvent: {fileID: 11400000, guid: b50e535442f3e9f4094afbd83842f912, type: 2}
   FadeTime: 1
 --- !u!1 &9003408454287613597
 GameObject:

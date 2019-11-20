@@ -19,6 +19,7 @@
           <e p="BreakableWallTrigger.cs" t="Include" />
           <e p="DetachOnStart.cs" t="Include" />
           <e p="ExplosionTest.cs" t="Include" />
+          <e p="LevelLoader.cs" t="Include" />
           <e p="NavballControl.cs" t="Include" />
           <e p="Player" t="Include">
             <e p="FlashlightIntensityControl.cs" t="Include" />
@@ -44,12 +45,14 @@
             <e p="LaserGrid.cs" t="Include" />
             <e p="LaserPlacement.cs" t="Include" />
             <e p="LaserTester.cs" t="Include" />
+            <e p="LinkableObject.cs" t="Include" />
             <e p="PhysicsButton.cs" t="Include" />
             <e p="PhysicsButtonTrigger.cs" t="Include" />
             <e p="PuzzleElement.cs" t="Include" />
           </e>
           <e p="RotateStars.cs" t="Include" />
           <e p="ScriptableObjects" t="Include">
+            <e p="EventBus.cs" t="Include" />
             <e p="LaserHolderMeshData.cs" t="Include" />
             <e p="LayerMasks.cs" t="Include" />
           </e>
@@ -77,9 +80,7 @@
       <e p="Library" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
-      <e p="Temp" t="ExcludeRecursive">
-        <e p="bin" t="ExcludeRecursive" />
-      </e>
+      <e p="Temp\bin" t="ExcludeRecursive" />
     </e>
   </component>
 </project>

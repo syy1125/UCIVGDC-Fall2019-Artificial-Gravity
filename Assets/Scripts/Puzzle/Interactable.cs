@@ -25,7 +25,9 @@ public abstract class Interactable : PuzzleElement
     public string LockedHoverText="";
     protected float RepeatTimer = 0;
     protected bool FirstUsage = true;
+    
     private PlayerInventory Inventory;
+    public EventBus SendTrigger; // Trigger this when interaction succeeds
     
     public float RepeatDelay = 0.3f;  //object can only be interacted with every 0.3 seconds
     private string DefaultUnlockedHoverText;
@@ -37,6 +39,11 @@ public abstract class Interactable : PuzzleElement
         Inventory = PlayerInventory.Instance;
         DefaultUnlockedHoverText = "Press E to use";
         DefaultLockedHoverText = "I need " + UnlockedByItem;
+
+        if (SendTrigger != null)
+        {
+            ActivateEvent += SendTrigger.Invoke;
+        }
         
         SetGlow(false);
         if(GetComponent<Renderer>() != null){

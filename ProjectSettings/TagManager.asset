@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PuzzleBox
   - Interactable
+  - LevelEntrance
   layers:
   - Default
   - TransparentFX

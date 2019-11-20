@@ -10,18 +10,19 @@ public class DeathScreenController : MonoBehaviour
 
 	[Header("References")]
 	public Button RespawnButton;
+	public EventBus PlayerDeathEvent;
 
 	[Header("Config")]
 	public float FadeTime;
 
 	private void OnEnable()
 	{
-		Player.OnPlayerKilled += HandlePlayerKilled;
+		PlayerDeathEvent.OnTriggered += HandlePlayerKilled;
 	}
 
 	private void OnDisable()
 	{
-		Player.OnPlayerKilled -= HandlePlayerKilled;
+		PlayerDeathEvent.OnTriggered -= HandlePlayerKilled;
 	}
 
 	private void HandlePlayerKilled()
@@ -75,6 +76,8 @@ public class DeathScreenController : MonoBehaviour
 
 		void SwitchActiveScene(Scene scene, LoadSceneMode mode)
 		{
+			if (scene.name != SceneManager.GetActiveScene().name) return;
+			
 			SceneManager.sceneLoaded -= SwitchActiveScene;
 			SceneManager.SetActiveScene(scene);
 		}
