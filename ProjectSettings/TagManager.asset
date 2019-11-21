@@ -7,6 +7,7 @@ TagManager:
   - PuzzleBox
   - Interactable
   - LevelEntrance
+  - PlayerAbilities
   layers:
   - Default
   - TransparentFX

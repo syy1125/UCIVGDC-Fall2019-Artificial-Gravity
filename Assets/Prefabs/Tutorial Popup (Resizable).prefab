@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 1
-  DismissKey: e
+  Controls: {fileID: 11400000, guid: 675384c69f6a3ff4f9f6eb7fd49b2424, type: 2}
   TriggeredBy: {fileID: 0}
   TriggerNextPopup: {fileID: 0}
 --- !u!1 &7857528405543610744
