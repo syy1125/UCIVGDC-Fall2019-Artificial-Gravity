@@ -46,6 +46,7 @@
             <e p="LaserPlacement.cs" t="Include" />
             <e p="LaserTester.cs" t="Include" />
             <e p="LinkableObject.cs" t="Include" />
+            <e p="ObjectReceptacle.cs" t="Include" />
             <e p="PhysicsButton.cs" t="Include" />
             <e p="PhysicsButtonTrigger.cs" t="Include" />
             <e p="PuzzleElement.cs" t="Include" />
