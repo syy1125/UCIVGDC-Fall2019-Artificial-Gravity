@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,6 +13,7 @@ public class DeathScreenController : MonoBehaviour
 	[Header("References")]
 	public Button RespawnButton;
 	public EventBus PlayerDeathEvent;
+	public PersistentGameplayScenes PersistentScenes;
 
 	[Header("Config")]
 	public float FadeTime;
@@ -58,6 +61,16 @@ public class DeathScreenController : MonoBehaviour
 			Destroy(root);
 		}
 
+		ForEachNonPersistentScene(
+			scene =>
+			{
+				foreach (GameObject root in scene.GetRootGameObjects())
+				{
+					Destroy(root);
+				}
+			}
+		);
+
 		group.interactable = true;
 		RespawnButton.onClick.AddListener(Respawn);
 
@@ -65,9 +78,12 @@ public class DeathScreenController : MonoBehaviour
 		{
 			RespawnButton.onClick.RemoveListener(Respawn);
 
+			ForEachNonPersistentScene(
+				scene => SceneManager.UnloadSceneAsync(scene)
+			);
+
 			SceneManager.sceneLoaded += SwitchActiveScene;
 			loadOp.allowSceneActivation = true;
-			SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 
 			group.interactable = false;
 			group.blocksRaycasts = false;
@@ -77,9 +93,23 @@ public class DeathScreenController : MonoBehaviour
 		void SwitchActiveScene(Scene scene, LoadSceneMode mode)
 		{
 			if (scene.name != SceneManager.GetActiveScene().name) return;
-			
+
 			SceneManager.sceneLoaded -= SwitchActiveScene;
+			SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 			SceneManager.SetActiveScene(scene);
+		}
+	}
+
+	private void ForEachNonPersistentScene(Action<Scene> action)
+	{
+		for (int i = 0; i < SceneManager.sceneCount; i++)
+		{
+			Scene scene = SceneManager.GetSceneAt(i);
+			if (SceneManager.GetActiveScene().Equals(scene)) continue;
+			if (!scene.isLoaded) continue;
+			if (PersistentScenes.SceneNames.Contains(scene.name)) continue;
+
+			action(scene);
 		}
 	}
 }
