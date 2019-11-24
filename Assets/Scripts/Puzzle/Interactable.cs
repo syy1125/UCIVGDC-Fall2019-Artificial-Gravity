@@ -35,6 +35,8 @@ public abstract class Interactable : PuzzleElement
     public Color MaterialColor = Color.white;
     public Color OutlineColor = Color.yellow;
 
+    private Material _outlineMaterial;
+
     public void Start(){
         DefaultUnlockedHoverText = "Press E to use";
         DefaultLockedHoverText = "I need " + UnlockedByItem;
@@ -45,14 +47,17 @@ public abstract class Interactable : PuzzleElement
         }
         
         SetGlow(false);
-        if(GetComponent<Renderer>() != null){
-            Material material = new Material(Shader.Find("Custom/Outline"));
-            material.SetColor("_Color", MaterialColor);
-            material.SetColor("_OutlineColor",OutlineColor);
+        var r = GetComponent<Renderer>();
 
-            GetComponent<Renderer>().material = material;
+        if (r != null)
+        {
+            _outlineMaterial = new Material(Shader.Find("Custom/Outline"));
+            _outlineMaterial.mainTexture = r.sharedMaterial.mainTexture;
+            _outlineMaterial.SetColor("_Color", MaterialColor);
+            _outlineMaterial.SetColor("_OutlineColor", OutlineColor);
+
+            r.material = _outlineMaterial;
         }
-        
     }
 
     void Update(){
@@ -124,6 +129,14 @@ public abstract class Interactable : PuzzleElement
                 ToggleOthers();
                 FirstUsage = false;
                 break;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (_outlineMaterial != null)
+        {
+            Destroy(_outlineMaterial);
         }
     }
 }
