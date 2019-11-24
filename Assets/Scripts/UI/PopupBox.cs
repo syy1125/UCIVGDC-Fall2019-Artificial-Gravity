@@ -48,39 +48,38 @@ public class PopupBox : PuzzleElement
 		if (State == 1
 		    && context.interaction is TapInteraction
 		    && context.startTime > _activateTime
-		    )
+		)
 		{
-			StartCoroutine(Dismiss());
+			State = 0;
+
+			if (TriggerNextPopup != null)
+			{
+				_group.alpha = 0;
+				_group.blocksRaycasts = false;
+				TriggerNextPopup.OnActivate();
+			}
+			else
+			{
+				_group.alpha = 0;
+				_group.blocksRaycasts = false;
+				Player.ActivePopup = false;
+			}
 		}
 	}
 
 	public void OnActivate()
 	{
+		StartCoroutine(HandleActivate());
+	}
+
+	private IEnumerator HandleActivate()
+	{
+		yield return null;
 		State = 1;
 		_group.alpha = 1;
 		_group.blocksRaycasts = true;
-		_activateTime = Time.time;
+		_activateTime = Time.realtimeSinceStartup;
 		Player.ActivePopup = true;
-	}
-
-	public IEnumerator Dismiss()
-	{
-		State = 0;
-
-		if (TriggerNextPopup != null)
-		{
-			// Prevent next PopupBox from using this frame's input to close itself
-			yield return null;
-			_group.alpha = 0;
-			_group.blocksRaycasts = false;
-			TriggerNextPopup.OnActivate();
-		}
-		else
-		{
-			_group.alpha = 0;
-			_group.blocksRaycasts = false;
-			Player.ActivePopup = false;
-		}
 	}
 
 	public void ForceClose()
