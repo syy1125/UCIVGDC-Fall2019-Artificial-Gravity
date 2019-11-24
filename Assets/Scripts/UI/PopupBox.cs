@@ -12,6 +12,7 @@ public class PopupBox : PuzzleElement
 	public PuzzleElement TriggeredBy; //i.e. A button press can open a popup box
 	public PopupBox TriggerNextPopup; //Will open another popupbox (a chain of boxes is possible)
 	private CanvasGroup _group;
+	private float _activateTime;
 
 	void Awake()
 	{
@@ -44,7 +45,10 @@ public class PopupBox : PuzzleElement
 
 	private void HandleDismiss(InputAction.CallbackContext context)
 	{
-		if (State == 1 && context.interaction is TapInteraction)
+		if (State == 1
+		    && context.interaction is TapInteraction
+		    && context.startTime > _activateTime
+		    )
 		{
 			StartCoroutine(Dismiss());
 		}
@@ -55,6 +59,7 @@ public class PopupBox : PuzzleElement
 		State = 1;
 		_group.alpha = 1;
 		_group.blocksRaycasts = true;
+		_activateTime = Time.time;
 		Player.ActivePopup = true;
 	}
 
