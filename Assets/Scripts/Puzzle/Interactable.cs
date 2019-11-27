@@ -46,7 +46,6 @@ public abstract class Interactable : PuzzleElement
             ActivateEvent += SendTrigger.Invoke;
         }
         
-        SetGlow(false);
         var r = GetComponent<Renderer>();
 
         if (r != null)
@@ -58,6 +57,8 @@ public abstract class Interactable : PuzzleElement
 
             r.material = _outlineMaterial;
         }
+        
+        SetGlow(false);
     }
 
     void Update(){
