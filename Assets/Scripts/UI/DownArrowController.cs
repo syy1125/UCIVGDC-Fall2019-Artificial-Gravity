@@ -2,18 +2,26 @@
 
 public class DownArrowController : MonoBehaviour
 {
+	private ArtificialGravity _playerGravity;
+	private Camera _playerCamera;
+
 	private void Update()
 	{
-		if (Player.Instance != null)
+		if (Player.Dead)
 		{
-			var gravity = Player.Instance.GetComponent<ArtificialGravity>();
-			Transform cameraTransform = Player.Instance.GetComponentInChildren<Camera>().transform;
-			if (gravity != null)
-			{
-				transform.rotation = Quaternion.LookRotation(
-					cameraTransform.InverseTransformVector(gravity.Down)
-				);
-			}
+			_playerGravity = null;
+			_playerCamera = null;
+			return;
 		}
+
+		if (_playerGravity == null || _playerCamera == null)
+		{
+			_playerGravity = Player.Instance.GetComponent<ArtificialGravity>();
+			_playerCamera = Player.Instance.GetComponentInChildren<Camera>();
+		}
+
+		transform.rotation = Quaternion.LookRotation(
+			_playerCamera.transform.InverseTransformVector(_playerGravity.Down)
+		);
 	}
 }
