@@ -34,6 +34,7 @@
             <e p="PlayerOrientation.cs" t="Include" />
           </e>
           <e p="Puzzle" t="Include">
+            <e p="BreakableVent.cs" t="Include" />
             <e p="Collectible.cs" t="Include" />
             <e p="Door.cs" t="Include" />
             <e p="EventTest.cs" t="Include" />
@@ -68,6 +69,7 @@
           </e>
           <e p="UI" t="Include">
             <e p="DeathScreenController.cs" t="Include" />
+            <e p="DownArrowController.cs" t="Include" />
             <e p="GravitonSurgeChargeBar.cs" t="Include" />
             <e p="HoverTextUI.cs" t="Include" />
             <e p="InventoryUI.cs" t="Include" />
