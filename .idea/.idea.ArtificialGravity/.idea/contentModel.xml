@@ -79,6 +79,7 @@
             <e p="PopupBox.cs" t="Include" />
             <e p="PopupController.cs" t="Include" />
             <e p="Transition.cs" t="Include" />
+            <e p="UIRevealer.cs" t="Include" />
           </e>
         </e>
         <e p="Shaders" t="Include">
