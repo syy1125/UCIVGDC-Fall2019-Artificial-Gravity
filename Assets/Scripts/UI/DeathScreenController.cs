@@ -59,9 +59,9 @@ public class DeathScreenController : MonoBehaviour
 
 		// Move camera (and therefore audio listener) to a sepa
 		Scene tempScene = SceneManager.CreateScene("Temporary Scene");
-		Camera mainCamera = Camera.main;
-		Debug.Assert(mainCamera != null, "Camera.main != null");
-		SceneManager.MoveGameObjectToScene(mainCamera.gameObject, tempScene);
+		Camera playerCamera = Camera.main;
+		Debug.Assert(playerCamera != null, "Camera.main != null");
+		SceneManager.MoveGameObjectToScene(playerCamera.gameObject, tempScene);
 		
 		foreach (GameObject root in SceneManager.GetActiveScene().GetRootGameObjects())
 		{
@@ -86,6 +86,7 @@ public class DeathScreenController : MonoBehaviour
 		void Respawn()
 		{
 			RespawnButton.onClick.RemoveListener(Respawn);
+			Destroy(playerCamera);
 
 			ForEachNonPersistentScene(
 				scene => SceneManager.UnloadSceneAsync(scene)
