@@ -86,6 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8609667ddfbfe6a4284e70bf06e8df2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameplayScenes: {fileID: 11400000, guid: afe61529df8a0a648b22f4375f840f3d, type: 2}
   TransitionDuration: 0.5
   TransitionIntoLevel: 0
 --- !u!1 &3346853438406526424

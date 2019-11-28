@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Production/User Interface.unity
     guid: 8b756ece310940345a4f807d1d1b8c79
   - enabled: 1
+    path: Assets/Scenes/Production/Level Persistent.unity
+    guid: a6eb54d0561406945828223704260004
+  - enabled: 1
     path: Assets/Scenes/Production/Level 1.unity
     guid: 196edd29bd3bd1446b283666cc76ea26
   - enabled: 1

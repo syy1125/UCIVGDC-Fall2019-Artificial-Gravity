@@ -63,7 +63,7 @@ public class MainMenuController : MonoBehaviour
         if(!AllowInput)
             return;
         AllowInput = false;
-        StartCoroutine(Transition.LoadLevel(LevelName(levelNum),false));
+        Transition.Instance.StartCoroutine(Transition.LoadLevel(LevelName(levelNum)));
     }
     public void LevelSelectButtonPress(){
         if(!AllowInput)

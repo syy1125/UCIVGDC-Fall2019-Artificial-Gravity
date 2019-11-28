@@ -69,6 +69,6 @@ public class PauseMenuController : MonoBehaviour
 	{
 		_canvasGroup.interactable = false;
 		Time.timeScale = 1;
-		StartCoroutine(Transition.LoadLevel("Main Menu", false));
+		StartCoroutine(Transition.LoadScene("Main Menu", false));
 	}
 }
