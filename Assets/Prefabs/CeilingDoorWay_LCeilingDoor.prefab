@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5337231005215271176}
-  m_Mesh: {fileID: -1966678606207066510, guid: 6f7b365a571de4246bd938ba71cf45e2, type: 3}
+  m_Mesh: {fileID: -1966678606207066510, guid: 14ae0e99d38a4ac4bbfb79b43e0ebd9d, type: 3}
 --- !u!23 &5337231005215271179
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7722903750436551516, guid: 6f7b365a571de4246bd938ba71cf45e2, type: 3}
+  - {fileID: 2100000, guid: d227738c7d413b64b8fbc8e65ad2fda5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -90,7 +90,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: -1966678606207066510, guid: 6f7b365a571de4246bd938ba71cf45e2, type: 3}
 --- !u!1 &5337231005900581824
@@ -287,7 +287,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5337231005926308972}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 43.68357, y: -3.7712395, z: -37.4904}
+  m_LocalPosition: {x: 37.3, y: -3.7712395, z: -37.4904}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5337231005900581827}
@@ -300,7 +300,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5337231005926308972}
-  m_Mesh: {fileID: -5076901109004906870, guid: 6f7b365a571de4246bd938ba71cf45e2, type: 3}
+  m_Mesh: {fileID: -5076901109004906870, guid: 14ae0e99d38a4ac4bbfb79b43e0ebd9d, type: 3}
 --- !u!23 &5337231005926308975
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -318,7 +318,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 7955670574967923875, guid: 6f7b365a571de4246bd938ba71cf45e2, type: 3}
+  - {fileID: 2100000, guid: d227738c7d413b64b8fbc8e65ad2fda5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -350,6 +350,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: -5076901109004906870, guid: 6f7b365a571de4246bd938ba71cf45e2, type: 3}
