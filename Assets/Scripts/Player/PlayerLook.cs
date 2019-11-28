@@ -1,10 +1,9 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerLook : MonoBehaviour
 {
 	private Transform _parent;
-	
+
 	[Header("References")]
 	public ControlsObject Controls;
 
@@ -44,16 +43,18 @@ public class PlayerLook : MonoBehaviour
 			UnlockCursor();
 			_controlsActive = false;
 		}
-		
+
 		var input = Controls.Gameplay.Look.ReadValue<Vector2>();
 		RotateView(input);
 		transform.localRotation = Quaternion.Euler(-AngleY, 0f, 0f);
+	}
 
-	}
-	public void RotateView(Vector2 input){
+	public void RotateView(Vector2 input)
+	{
 		AngleY += input.y;
-		_parent.Rotate(Vector3.up, input.x);
+		if (_parent != null) _parent.Rotate(Vector3.up, input.x);
 	}
+
 	private static void LockCursor()
 	{
 		Cursor.lockState = CursorLockMode.Locked;
@@ -65,6 +66,4 @@ public class PlayerLook : MonoBehaviour
 		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
 	}
-	
-	
 }

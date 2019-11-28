@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Debug = System.Diagnostics.Debug;
 
 public class DeathScreenController : MonoBehaviour
 {
@@ -56,6 +57,12 @@ public class DeathScreenController : MonoBehaviour
 
 		yield return new WaitUntil(() => loadOp.progress >= SCENE_ACTIVATION_READY_PROGRESS_THRESHOLD);
 
+		// Move camera (and therefore audio listener) to a sepa
+		Scene tempScene = SceneManager.CreateScene("Temporary Scene");
+		Camera mainCamera = Camera.main;
+		Debug.Assert(mainCamera != null, "Camera.main != null");
+		SceneManager.MoveGameObjectToScene(mainCamera.gameObject, tempScene);
+		
 		foreach (GameObject root in SceneManager.GetActiveScene().GetRootGameObjects())
 		{
 			Destroy(root);
@@ -64,13 +71,15 @@ public class DeathScreenController : MonoBehaviour
 		ForEachNonPersistentScene(
 			scene =>
 			{
+				if (scene == tempScene) return;
+				
 				foreach (GameObject root in scene.GetRootGameObjects())
 				{
 					Destroy(root);
 				}
 			}
 		);
-
+		
 		group.interactable = true;
 		RespawnButton.onClick.AddListener(Respawn);
 

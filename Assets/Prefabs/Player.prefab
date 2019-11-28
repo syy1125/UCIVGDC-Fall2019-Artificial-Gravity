@@ -436,6 +436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee458984a82b226468f6e7bef206b248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FollowCamera: {fileID: 7036981791066173949}
   FollowSpeed: 5
 --- !u!114 &6774239525611829836
 MonoBehaviour:
