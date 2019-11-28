@@ -32,11 +32,11 @@ public class PhysicsButton : PuzzleElement
         }
         ButtonAnimator.SetFloat("Time",AnimTime);
     }
-    public void ActivateOthers(){
+    public override void ActivateOthers(){
         State = 1;
         base.ActivateOthers();
     }
-    public void DeactivateOthers(){
+    public override void DeactivateOthers(){
         State = 0;
         base.DeactivateOthers();
     }

@@ -20,19 +20,19 @@ public class PuzzleElement : MonoBehaviour
     public event PuzzleElementEventHandler DeactivateEvent;
     public event PuzzleElementEventHandler ToggleEvent;
     public int State = 0; //if an object doesn't/shouldn't have a state, you can just ignore this
-    public void ActivateOthers(){
+    public virtual void ActivateOthers(){
         //calls onActivate in all gameObjects listening to this
         if(ActivateEvent != null){
             ActivateEvent();
         }
     }
-    public void DeactivateOthers(){
+    public virtual void DeactivateOthers(){
         //calls onDeactivate in all gameObjects listening to this
         if(DeactivateEvent != null){
             DeactivateEvent();
         }
     }
-    public void ToggleOthers(){
+    public virtual void ToggleOthers(){
         if(ToggleEvent != null){
             ToggleEvent();
         }

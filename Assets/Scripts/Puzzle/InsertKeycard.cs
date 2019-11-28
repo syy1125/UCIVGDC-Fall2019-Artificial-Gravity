@@ -14,20 +14,17 @@ public class InsertKeycard : Interactable
 	public float InsertTime;
 
 	private Color _color;
-	private bool _used;
 
 	private void Reset()
 	{
 		Interaction = InteractType.OnlyOnce;
 	}
 
-	private void Start()
+	protected override void Start()
 	{
 		_color = KeycardColor;
 		_color.a = 0;
 		Renderer.material.color = _color;
-
-		_used = false;
 	}
 
 	public override void OnInteract()

@@ -11,7 +11,7 @@ public class LinkableObject : Interactable
 
     public Color LinkedMaterialColor;
     private Color _defaultColor;
-    void Start()
+    protected override void Start()
     {
         base.Start();
         _gravity = GetComponent<ArtificialGravity>();

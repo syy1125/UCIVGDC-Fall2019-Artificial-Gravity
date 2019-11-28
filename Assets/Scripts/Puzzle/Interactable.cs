@@ -37,7 +37,7 @@ public abstract class Interactable : PuzzleElement
 
     private Material _outlineMaterial;
 
-    public void Start(){
+    protected virtual void Start(){
         DefaultUnlockedHoverText = "Press E to use";
         DefaultLockedHoverText = "I need " + UnlockedByItem;
 
