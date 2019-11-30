@@ -57,7 +57,7 @@ public class DeathScreenController : MonoBehaviour
 
 		yield return new WaitUntil(() => loadOp.progress >= SCENE_ACTIVATION_READY_PROGRESS_THRESHOLD);
 
-		// Move camera (and therefore audio listener) to a sepa
+		// Move camera (and therefore audio listener) to a separate scene
 		Scene tempScene = SceneManager.CreateScene("Temporary Scene");
 		Camera playerCamera = Camera.main;
 		Debug.Assert(playerCamera != null, "Camera.main != null");
@@ -86,7 +86,6 @@ public class DeathScreenController : MonoBehaviour
 		void Respawn()
 		{
 			RespawnButton.onClick.RemoveListener(Respawn);
-			Destroy(playerCamera);
 
 			ForEachNonPersistentScene(
 				scene => SceneManager.UnloadSceneAsync(scene)
@@ -94,6 +93,7 @@ public class DeathScreenController : MonoBehaviour
 
 			SceneManager.sceneLoaded += SwitchActiveScene;
 			loadOp.allowSceneActivation = true;
+			loadOp.completed += _ => Destroy(playerCamera.gameObject);
 
 			group.interactable = false;
 			group.blocksRaycasts = false;
