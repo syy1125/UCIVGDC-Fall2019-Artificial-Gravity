@@ -55,7 +55,6 @@ public class LevelLoader : MonoBehaviour
 			if (cancelled)
 			{
 				SceneManager.UnloadSceneAsync(scene);
-				StartCoroutine(Start());
 			}
 			else
 			{
