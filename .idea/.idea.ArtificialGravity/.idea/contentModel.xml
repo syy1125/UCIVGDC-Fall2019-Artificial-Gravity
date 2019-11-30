@@ -19,6 +19,7 @@
           <e p="BreakableWallTrigger.cs" t="Include" />
           <e p="DetachOnStart.cs" t="Include" />
           <e p="ExplosionTest.cs" t="Include" />
+          <e p="LevelEntryTrigger.cs" t="Include" />
           <e p="LevelLoader.cs" t="Include" />
           <e p="MusicPlayer.cs" t="Include" />
           <e p="NavballControl.cs" t="Include" />

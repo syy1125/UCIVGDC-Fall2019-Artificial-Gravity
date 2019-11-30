@@ -59,7 +59,6 @@ public class LevelLoader : MonoBehaviour
 			}
 			else
 			{
-				SceneManager.SetActiveScene(scene);
 				foreach (GameObject obj in GameObject.FindGameObjectsWithTag("LevelEntrance"))
 				{
 					obj.SetActive(false);
