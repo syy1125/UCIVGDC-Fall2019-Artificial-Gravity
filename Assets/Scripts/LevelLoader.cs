@@ -61,7 +61,10 @@ public class LevelLoader : MonoBehaviour
 			{
 				foreach (GameObject obj in GameObject.FindGameObjectsWithTag("LevelEntrance"))
 				{
-					obj.SetActive(false);
+					if (obj.scene.Equals(scene))
+					{
+						obj.SetActive(false);
+					}
 				}
 			}
 		}
