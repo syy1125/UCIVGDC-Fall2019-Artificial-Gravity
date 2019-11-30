@@ -2100,6 +2100,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4186923441046204623, guid: 14ae0e99d38a4ac4bbfb79b43e0ebd9d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: -8926828049398568933, guid: 14ae0e99d38a4ac4bbfb79b43e0ebd9d,
         type: 3}
       propertyPath: m_Layer
@@ -2539,11 +2544,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 45146583a8b17404cbd9607f30b23bed, type: 2}
-    - target: {fileID: 4186923441046204623, guid: 14ae0e99d38a4ac4bbfb79b43e0ebd9d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 4254552130108656399, guid: 14ae0e99d38a4ac4bbfb79b43e0ebd9d,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2761,8 +2761,8 @@ MonoBehaviour:
   Locked: 1
   UnlockedByItem: Keycard 1
   Interaction: 1
-  UnlockedHoverText: I need a keycard
-  LockedHoverText: Press E to open door
+  UnlockedHoverText: Press E to open door
+  LockedHoverText: I need a keycard
   SendTrigger: {fileID: 11400000, guid: 23365c3ffa75bc14eb09036f4b4de9cf, type: 2}
   RepeatDelay: 0.3
   MaterialColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2778,7 +2778,7 @@ Animator:
   m_GameObject: {fileID: 1905781708}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4507a54a555e62f40aac5589ac8975d8, type: 2}
+  m_Controller: {fileID: 9100000, guid: a78fef285b0436747941cae9b36c9076, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
