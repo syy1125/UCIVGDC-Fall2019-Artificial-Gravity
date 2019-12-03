@@ -16798,7 +16798,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Henry?
+  m_Text: Slim Shady
 --- !u!222 &1052795525
 CanvasRenderer:
   m_ObjectHideFlags: 0
