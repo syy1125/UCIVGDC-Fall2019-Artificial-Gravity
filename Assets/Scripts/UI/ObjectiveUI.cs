@@ -8,11 +8,13 @@ public class ObjectiveUI : MonoBehaviour
 
 	[Header("References")]
 	public Text ObjectiveText;
-	public Transform EnlargedObjectiveText;
-	
+
 	[Header("Config")]
-	public float HighlightTime;
-	public AnimationCurve HighlightCurve;
+	[TextArea]
+	public string ObjectivePrefix;
+	public float TextTypeInterval;
+
+	private string _objective;
 
 	private Coroutine _highlightCoroutine;
 
@@ -27,37 +29,43 @@ public class ObjectiveUI : MonoBehaviour
 		Instance = this;
 	}
 
+	private void Start()
+	{
+		_objective = "";
+		UpdateObjective();
+	}
+
+	private void UpdateObjective()
+	{
+		ObjectiveText.text = $"{ObjectivePrefix} {_objective}";
+	}
+	
 	public void SetObjective(string objective)
 	{
-		ObjectiveText.text = objective;
-
 		if (_highlightCoroutine != null)
 		{
 			StopCoroutine(_highlightCoroutine);
 			_highlightCoroutine = null;
 		}
 
-		_highlightCoroutine = StartCoroutine(HighlightObjective());
+		_highlightCoroutine = StartCoroutine(HighlightObjective(objective));
 	}
 
-	private IEnumerator HighlightObjective()
+	private IEnumerator HighlightObjective(string objective)
 	{
-		Transform textTransform = ObjectiveText.transform;
-		Vector3 initialPosition = textTransform.position;
-		Vector3 initialScale = textTransform.localScale;
-
-		float startTime = Time.time;
-		while ((Time.time - startTime) < HighlightTime)
+		while (_objective.Length > 0)
 		{
-			float lerpParameter = HighlightCurve.Evaluate((Time.time - startTime) / HighlightTime);
-			textTransform.position = Vector3.Lerp(EnlargedObjectiveText.position, initialPosition, lerpParameter);
-			textTransform.localScale = Vector3.Lerp(EnlargedObjectiveText.localScale, initialScale, lerpParameter);
-			yield return null;
+			_objective = _objective.Substring(0, _objective.Length - 1);
+			UpdateObjective();
+			yield return new WaitForSecondsRealtime(TextTypeInterval);
 		}
 
-		textTransform.position = initialPosition;
-		textTransform.localScale = initialScale;
-		_highlightCoroutine = null;
+		while (_objective.Length < objective.Length)
+		{
+			_objective = objective.Substring(0, _objective.Length + 1);
+			UpdateObjective();
+			yield return new WaitForSecondsRealtime(TextTypeInterval);
+		}
 	}
 
 	private void OnDestroy()
