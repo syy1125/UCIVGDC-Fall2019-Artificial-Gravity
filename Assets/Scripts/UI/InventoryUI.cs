@@ -7,16 +7,11 @@ public class InventoryUI : MonoBehaviour
 {
 	// Start is called before the first frame update
 	private PlayerInventory Inventory => Player.Instance == null ? null : Player.Instance.Inventory;
-	private Image[] InventorySlots;
+	public Image[] InventorySlots;
 	public Sprite EmptySprite;
 
-	void Start()
-	{
-		InventorySlots = GetChildren();
-	}
-
 	// Update is called once per frame
-	void Update()
+	private void Update()
 	{
 		UpdateInventory();
 	}
