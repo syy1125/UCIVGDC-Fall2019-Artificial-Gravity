@@ -223,7 +223,7 @@ MonoBehaviour:
   Activation: 1
   TriggeredBy: {fileID: 0}
   DoorSpeed: 1
-  OpenSound: {fileID: 0}
+  OpenSound: {fileID: 8300000, guid: 60e214fe3a1175e459dcb2d8a5a34460, type: 3}
 --- !u!1 &4612787359957251340
 GameObject:
   m_ObjectHideFlags: 0

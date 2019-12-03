@@ -135,17 +135,17 @@ PrefabInstance:
     - target: {fileID: 1618270098096371962, guid: c878de159930a084980211ce22d00942,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.28
+      value: 14.66
       objectReference: {fileID: 0}
     - target: {fileID: 1618270098096371962, guid: c878de159930a084980211ce22d00942,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.93
+      value: 50.6
       objectReference: {fileID: 0}
     - target: {fileID: 1618270098096371962, guid: c878de159930a084980211ce22d00942,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.05
+      value: -16.18
       objectReference: {fileID: 0}
     - target: {fileID: 1618270098096371962, guid: c878de159930a084980211ce22d00942,
         type: 3}
@@ -338,5 +338,54 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7400950678474975565, guid: 070684ab069076242a76831dbb44517d,
+        type: 3}
+      propertyPath: TriggeredBy
+      value: 
+      objectReference: {fileID: 1041699463}
+    - target: {fileID: 7400950678474975565, guid: 070684ab069076242a76831dbb44517d,
+        type: 3}
+      propertyPath: OpenSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 60e214fe3a1175e459dcb2d8a5a34460, type: 3}
+    - target: {fileID: 3983376295827681903, guid: 070684ab069076242a76831dbb44517d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2ff9e3aa654a74841bfa6631c9a60a8f, type: 2}
+    - target: {fileID: 5472129083709523958, guid: 070684ab069076242a76831dbb44517d,
+        type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 070684ab069076242a76831dbb44517d, type: 3}
+--- !u!1 &1041699462 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5475591113372998561, guid: 070684ab069076242a76831dbb44517d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1041699461}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1041699463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041699462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fb79e869cc1f7240b855984f3ac8f62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 0
+  Locked: 0
+  UnlockedByItem: 
+  Interaction: 1
+  UnlockedHoverText: Press E to open door
+  LockedHoverText: 
+  SendTrigger: {fileID: 0}
+  RepeatDelay: 0.3
+  MaterialColor: {r: 1, g: 0, b: 0, a: 1}
+  OutlineColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  InteractSound: {fileID: 0}
